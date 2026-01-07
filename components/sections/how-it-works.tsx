@@ -1,5 +1,6 @@
 import type { ProcessStep } from "@/lib/types/landing";
 import { SectionShell } from "@/components/ui/section-shell";
+import { PlaceholderIcon } from "@/components/ui/placeholder-icon";
 
 type HowItWorksProps = {
   eyebrow?: string;
@@ -27,6 +28,7 @@ export function HowItWorksSection({
             key={step.name}
             className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/[0.04] p-6"
           >
+            <PlaceholderIcon name={step.icon} className="h-10 w-10" />
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50">
               Step {index + 1}
             </p>

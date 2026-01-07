@@ -4,61 +4,78 @@ export const landingMock: LandingContent = {
   hero: {
     title: "RedHorse Protocol",
     subtitle:
-      "Composable membership and token rails for communities that need progressive access control.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus amet lacus nec rutrum ultrices.",
     ctas: [
       { label: "Launch App", href: "/app" },
       { label: "Explore Docs", href: "/docs" },
     ],
   },
   whatIs: {
-    title: "What is RedHorse?",
+    title: "Lorem ipsum primis in faucibus",
     description:
-      "Settle tokenized memberships, lock perks behind programmatic tiers, and orchestrate drops with one layout-first stack.",
+      "Cras rhoncus lectus nisl, eget posuere lorem aliquet vitae. Pellentesque sed dolor vitae lorem ultricies auctor.",
     items: [
       {
-        title: "Membership Rail",
-        description: "Composable cards for allowlists, phased unlocks, and perks.",
+        title: "Strata Layouts",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do.",
+        icon: "spark",
       },
       {
         title: "Token Snapshot",
-        description: "Surface key contract stats before switching to live data.",
+        description:
+          "Vivamus viverra mi in lorem hendrerit, vel convallis urna facilisis.",
+        icon: "orbit",
       },
       {
         title: "Docs-Ready Layout",
-        description: "Landing + docs shell so teams can drop in MDX or CMS later.",
+        description:
+          "Integer feugiat, lorem quis vehicula elementum, dolor mauris congue mi.",
+        icon: "stack",
       },
     ],
+    banner: {
+      title: "Sed posuere consectetur est at lobortis",
+      description:
+        "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero a pharetra augue vehicula.",
+    },
   },
   howItWorks: {
-    title: "How It Works",
+    title: "Processus in tribus passibus",
     description:
-      "Three simple sections illustrate the flow before any backend wiring exists.",
+      "Mauris lacinia bibendum arcu eget maximus. Etiam ut lacus non augue porta vulputate.",
     steps: [
       {
-        name: "Create",
-        description: "Authors drop placeholder copy and tier metadata into mock data.",
+        name: "Frame",
+        description:
+          "Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis.",
+        icon: "spark",
       },
       {
-        name: "Preview",
-        description: "Landing auto-renders cards with responsive grids and tokens.",
+        name: "Compose",
+        description:
+          "Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum.",
+        icon: "bolt",
       },
       {
-        name: "Go Live",
-        description: "Swap mock imports for CMS/contract feeds without rebuilding UI.",
+        name: "Hand Off",
+        description:
+          "Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis.",
+        icon: "orbit",
       },
     ],
   },
   membership: {
-    title: "Membership tiers",
+    title: "Tiered Lorem Modules",
     description:
-      "Three column grid with optional featured tier. Replace bullet copy without shifting layout.",
+      "Praesent sed pellentesque erat. Aliquam sodales lorem sit amet orci volutpat sagittis.",
     tiers: [
       {
         name: "Signal",
         perks: [
-          "Early changelog access",
-          "Monthly governance digest",
-          "Discord badge placeholder",
+          "Praesent dictum feugiat turpis fermentum.",
+          "Integer mollis nec ligula sit amet mattis.",
+          "Etiam ultricies libero at enim iaculis.",
         ],
         ctaLabel: "Reserve",
       },
@@ -66,18 +83,18 @@ export const landingMock: LandingContent = {
         name: "Velocity",
         featured: true,
         perks: [
-          "Priority support lane",
-          "Snapshot voting weight",
-          "Invite-only drops",
+          "Mauris commodo libero vitae justo faucibus.",
+          "Curabitur auctor lacus id massa porta.",
+          "Vestibulum imperdiet nisl vitae tempus blandit.",
         ],
         ctaLabel: "Join Waitlist",
       },
       {
         name: "Origin",
         perks: [
-          "Private research feed",
-          "Advisory syncs",
-          "Collector dashboard",
+          "Aenean in gravida metus sed luctus.",
+          "Suspendisse potenti integer non felis.",
+          "Nam aliquam nisl ut lectus hendrerit.",
         ],
         ctaLabel: "Contact Team",
       },
@@ -87,11 +104,11 @@ export const landingMock: LandingContent = {
     contract: {
       label: "Contract",
       address: "0xabc0...cafe",
-      helper: "Placeholder address until mainnet deploy",
+      helper: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     metrics: [
-      { label: "Total Supply", value: "100M RH" },
-      { label: "Initial Float", value: "12.5%" },
+      { label: "Total Supply", value: "120M RH" },
+      { label: "Initial Float", value: "15.0%" },
       { label: "Vesting", value: "18 month linear" },
       { label: "Chain", value: "OP Mainnet" },
     ],
@@ -107,96 +124,113 @@ export const landingMock: LandingContent = {
     ],
   },
   security: {
-    title: "Security Signals",
+    title: "Praesidium indicia",
     description:
-      "Highlight audits, multisig guardians, and general risk disclosures before real docs drop in.",
+      "Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero a pharetra augue.",
     highlights: [
       {
         title: "Audit Ready",
-        description: "Reserved section for audit notes. Swap with firm + date later.",
+        description:
+          "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.",
         badge: "Placeholder",
+        icon: "shield",
       },
       {
         title: "Multisig Treasury",
-        description: "Describe signer count and rotation policies in a single card.",
+        description:
+          "Sed posuere consectetur est at lobortis lorem ipsum dolor sit amet.",
         badge: "5 of 9",
+        icon: "orbit",
       },
       {
         title: "Risk Primer",
         description:
-          "Link to potential risk disclosures so visitors understand program constraints.",
+          "Maecenas faucibus mollis interdum. Curabitur blandit tempus porttitor.",
+        icon: "wave",
       },
     ],
   },
   roadmap: {
-    title: "Roadmap",
-    description: "Four-phase outline keeps the layout ready for milestone content.",
+    title: "Via Lorem",
+    description:
+      "Sed posuere consectetur est at lobortis. Nulla vitae elit libero a pharetra augue.",
     items: [
       {
         quarter: "Q1",
         title: "Design freeze",
-        description: "Lock landing + docs shell, gather copy, and align tokens.",
+        description:
+          "Praesent commodo cursus magna vel scelerisque nisl consectetur.",
         status: "done",
       },
       {
         quarter: "Q2",
         title: "Token dummy data",
-        description: "Swap placeholder stats for simulated numbers + graphs.",
+        description:
+          "Duis mollis est non commodo luctus nisi erat porttitor ligula.",
         status: "in-progress",
       },
       {
         quarter: "Q3",
         title: "Membership live",
-        description: "Wire CMS + deliver tier gating logic with toggles.",
+        description:
+          "Donec sed odio dui. Sed posuere consectetur est at lobortis elit.",
         status: "planned",
       },
       {
         quarter: "Q4",
         title: "Docs migration",
-        description: "Drop MDX docs + interactive examples into the stub.",
+        description:
+          "Morbi leo risus porta ac consectetur ac vestibulum at eros.",
         status: "planned",
       },
     ],
   },
   community: {
-    title: "Community pulse",
+    title: "Communitas rhythmus",
     description:
-      "Two updatable cards for channels or resources the team wants to show.",
+      "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
     channels: [
       {
         title: "Signal Radio",
-        description: "Bi-weekly Twitter Spaces recaps. Replace with actual handles later.",
+        description:
+          "Nullam quis risus eget urna mollis ornare vel eu leo aliquam.",
         action: "Follow Channel",
+        image: "/project_wireframe.png",
+        icon: "wave",
       },
       {
         title: "Builders Forum",
-        description: "Discourse-style hub with updates, RFCs, and operator Q&A.",
+        description:
+          "Etiam porta sem malesuada magna mollis euismod condimentum.",
         action: "Enter Forum",
+        icon: "stack",
       },
     ],
   },
   faq: {
-    title: "FAQ",
-    description: "Sample questions so accordions can be styled pre-content.",
+    title: "Quaestiones communes",
+    description:
+      "Aenean lacinia bibendum nulla sed consectetur pharetra augue fusce.",
     items: [
       {
-        question: "When will the mainnet contract ship?",
-        answer: "Timeline sits in Q2 of the roadmap. Swap once a date is final.",
+        question: "Quando timeline parata est?",
+        answer:
+          "Vestibulum id ligula porta felis euismod semper. Pellentesque ornare sem lacinia quam venenatis.",
       },
       {
-        question: "Can tiers change after launch?",
+        question: "Mutantur gradus post initium?",
         answer:
-          "Yes. Copy explains how perks, gating logic, and snapshots update without redeploys.",
+          "Nulla vitae elit libero a pharetra augue. Fusce dapibus tellus ac cursus commodo tortor mauris.",
       },
       {
-        question: "Do I need a wallet to preview the app?",
+        question: "Praevisus app sine ratione?",
         answer:
-          "Landing is public; Launch App can open a wallet-gated flow later. Keep CTA stable.",
+          "Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus.",
       },
       {
-        question: "Is there a token sale?",
+        question: "Estne venditio aperta?",
         answer:
-          "Use this response to clarify distribution or redirect to docs once numbers are public.",
+          "Cras justo odio dapibus ac facilisis in egestas eget quam. Nulla vitae elit libero a pharetra augue.",
       },
     ],
   },

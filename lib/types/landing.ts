@@ -1,3 +1,5 @@
+export type IconName = "spark" | "orbit" | "stack" | "shield" | "wave" | "bolt";
+
 export type HeroContent = {
   title: string;
   subtitle: string;
@@ -7,12 +9,13 @@ export type HeroContent = {
 export type KeyPoint = {
   title: string;
   description: string;
-  icon?: string;
+  icon?: IconName;
 };
 
 export type ProcessStep = {
   name: string;
   description: string;
+  icon?: IconName;
 };
 
 export type MembershipTier = {
@@ -43,6 +46,7 @@ export type SecurityHighlight = {
   title: string;
   description: string;
   badge?: string;
+  icon?: IconName;
 };
 
 export type RoadmapItem = {
@@ -56,6 +60,8 @@ export type CommunityChannel = {
   title: string;
   description: string;
   action: string;
+  image?: string;
+  icon?: IconName;
 };
 
 export type FaqItem = {
@@ -69,6 +75,10 @@ export type LandingContent = {
     title: string;
     description: string;
     items: KeyPoint[];
+    banner?: {
+      title: string;
+      description: string;
+    };
   };
   howItWorks: {
     title: string;

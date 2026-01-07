@@ -1,6 +1,7 @@
 import { SectionShell } from "@/components/ui/section-shell";
 import { Button } from "@/components/ui/button";
 import type { TokenSnapshot } from "@/lib/types/landing";
+import { PlaceholderIcon } from "@/components/ui/placeholder-icon";
 
 type TokenInfoProps = TokenSnapshot;
 
@@ -19,9 +20,12 @@ export function TokenInfoSection({
     >
       <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
         <article className="rounded-3xl border border-white/10 bg-white/5 p-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-white/40">
-            {contract.label}
-          </p>
+          <div className="flex items-center gap-3">
+            <PlaceholderIcon name="stack" className="h-10 w-10" />
+            <p className="text-xs uppercase tracking-[0.3em] text-white/40">
+              {contract.label}
+            </p>
+          </div>
           <p className="mt-4 font-mono text-lg text-white">{contract.address}</p>
           <p className="mt-2 text-sm text-white/60">{contract.helper}</p>
           <div className="mt-6 flex flex-wrap gap-3">
