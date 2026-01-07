@@ -1,5 +1,8 @@
 import { Hero } from "@/components/sections/hero";
 import { SectionShell } from "@/components/ui/section-shell";
+import { WhatIsSection } from "@/components/sections/what-is";
+import { HowItWorksSection } from "@/components/sections/how-it-works";
+import { MembershipTiersSection } from "@/components/sections/membership-tiers";
 import { landingMock } from "@/lib/data/landing.mock";
 
 const placeholderCard =
@@ -10,72 +13,11 @@ export default function Home() {
     <div className="bg-[var(--rh-background)] text-white">
       <Hero {...landingMock.hero} />
 
-      <SectionShell
-        id="what"
-        eyebrow="What is RH"
-        title="Three blocks to articulate the value prop"
-        description="Use this area to lock spacing, card gutters, and responsive flow. Copy will be swapped later."
-      >
-        <div className="grid gap-6 md:grid-cols-3">
-          {[...Array(3)].map((_, index) => (
-            <div key={index} className={placeholderCard}>
-              <div className="mb-4 h-10 w-10 rounded-full bg-white/10" />
-              <div className="h-4 w-3/4 rounded-full bg-white/20" />
-              <div className="mt-3 h-3 w-full rounded-full bg-white/10" />
-              <div className="mt-2 h-3 w-4/5 rounded-full bg-white/10" />
-            </div>
-          ))}
-        </div>
-      </SectionShell>
+      <WhatIsSection {...landingMock.whatIs} />
 
-      <SectionShell
-        id="how"
-        eyebrow="How It Works"
-        title="Three step process"
-        description="Each card locks the columns and ensures content stays balanced on tablet/mobile."
-      >
-        <div className="grid gap-6 md:grid-cols-3">
-          {[...Array(3)].map((_, index) => (
-            <div key={index} className={placeholderCard}>
-              <p className="text-sm text-white/40">Step {index + 1}</p>
-              <div className="mt-3 h-4 w-2/3 rounded-full bg-white/20" />
-              <div className="mt-2 h-3 w-full rounded-full bg-white/10" />
-              <div className="mt-2 h-3 w-4/5 rounded-full bg-white/10" />
-            </div>
-          ))}
-        </div>
-      </SectionShell>
+      <HowItWorksSection {...landingMock.howItWorks} />
 
-      <SectionShell
-        id="membership"
-        eyebrow="Membership Tiers"
-        title="Tier grid placeholder"
-        description="This grid keeps cards aligned with equal height CTAs."
-      >
-        <div className="grid gap-6 md:grid-cols-3">
-          {[...Array(3)].map((_, index) => (
-            <div
-              key={index}
-              className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/[0.04] p-6"
-            >
-              <div className="flex items-center justify-between">
-                <div className="h-4 w-20 rounded-full bg-white/20" />
-                {index === 1 && (
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white">
-                    Featured
-                  </span>
-                )}
-              </div>
-              <div className="space-y-2">
-                {[...Array(3)].map((item) => (
-                  <div key={item} className="h-3 rounded-full bg-white/10" />
-                ))}
-              </div>
-              <div className="mt-auto h-10 rounded-full bg-white/15" />
-            </div>
-          ))}
-        </div>
-      </SectionShell>
+      <MembershipTiersSection {...landingMock.membership} />
 
       <SectionShell
         id="token"
