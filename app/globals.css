@@ -10,13 +10,19 @@
   --rh-primary-muted: rgba(224, 50, 58, 0.16);
   --rh-text: #f4f4f5;
   --rh-text-muted: #a1a1aa;
+  --rh-font-sans: "Geist", "Inter", "Segoe UI", system-ui, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  --rh-font-mono: "Geist Mono", "JetBrains Mono", "SFMono-Regular",
+    "Source Code Pro", ui-monospace, Menlo, Monaco, Consolas, monospace;
+  --font-geist-sans: var(--rh-font-sans);
+  --font-geist-mono: var(--rh-font-mono);
 }
 
 @theme inline {
   --color-background: var(--rh-background);
   --color-foreground: var(--rh-text);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--rh-font-sans);
+  --font-mono: var(--rh-font-mono);
 }
 
 body {
@@ -29,8 +35,7 @@ body {
     ),
     #040506;
   color: var(--rh-text);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+  font-family: var(--rh-font-sans);
 }
 
 ::selection {

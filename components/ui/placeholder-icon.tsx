@@ -1,7 +1,8 @@
+import type { ReactNode } from "react";
 import type { IconName } from "@/lib/types/landing";
 import { cn } from "@/lib/utils/cn";
 
-const iconPaths: Record<IconName, JSX.Element> = {
+const iconPaths: Record<IconName, ReactNode> = {
   spark: (
     <>
       <path

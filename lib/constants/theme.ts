@@ -11,8 +11,8 @@ export const palette = {
 };
 
 export const fonts = {
-  sans: "var(--font-geist-sans)",
-  mono: "var(--font-geist-mono)",
+  sans: "var(--rh-font-sans)",
+  mono: "var(--rh-font-mono)",
 };
 
 export const buttonStyles = {
