@@ -1,23 +1,31 @@
-import {
-  getDocDocuments,
-  getDocsContent,
-} from "@/app/admin/docs-actions";
+import { getDocDocument, getDocDocuments, getDocsContent } from "@/app/admin/docs-actions";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { PlaceholderIcon } from "@/components/ui/placeholder-icon";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export default async function DocsPage() {
-  const [docs, documents] = await Promise.all([
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function DocDocumentPage({ params }: Props) {
+  const { slug } = await params;
+  const [document, docs, allDocuments] = await Promise.all([
+    getDocDocument(slug),
     getDocsContent(),
     getDocDocuments(),
   ]);
 
-  // Published 문서만 필터링
-  const publishedDocuments = documents.filter((doc) => doc.published);
+  if (!document || !document.published) {
+    notFound();
+  }
+
+  const publishedDocuments = allDocuments.filter((doc) => doc.published);
+
   return (
     <div className="bg-[var(--rh-background)] py-16 text-white">
       <div className="border-b border-white/10 bg-white/5">
@@ -119,18 +127,22 @@ export default async function DocsPage() {
 
             {/* 데이터베이스에서 가져온 문서들 */}
             {publishedDocuments.length > 0 && (
-              <div className="space-y-3 border-t border-white/10 pt-6">
+              <div className="space-y-3">
                 <p className="text-xs uppercase tracking-[0.3em] text-white/50">
                   Documents
                 </p>
                 <ul className="space-y-1">
-                  {publishedDocuments.map((document) => (
-                    <li key={document.id}>
+                  {publishedDocuments.map((doc) => (
+                    <li key={doc.id}>
                       <Link
-                        href={`/docs/${document.slug}`}
-                        className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-white/80 hover:bg-white/10 transition-colors"
+                        href={`/docs/${doc.slug}`}
+                        className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left transition-colors ${
+                          doc.slug === slug
+                            ? "bg-white/10 text-white"
+                            : "text-white/80 hover:bg-white/10"
+                        }`}
                       >
-                        <span>{document.title}</span>
+                        <span>{doc.title}</span>
                       </Link>
                     </li>
                   ))}
@@ -145,39 +157,41 @@ export default async function DocsPage() {
             <div className="flex flex-col gap-4 border-b border-white/5 pb-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.3em] text-white/50">
-                  Chapter One
+                  {document.description || "Document"}
                 </p>
                 <h2 className="text-3xl font-semibold text-white">
-                  {docs.article.title}
+                  {document.content.title}
                 </h2>
               </div>
               <div className="text-sm text-white/50">
-                {docs.article.updated}
+                {document.content.updated}
               </div>
             </div>
             <div className="space-y-4 pt-6 text-sm leading-relaxed text-white/80">
-              {docs.article.body.map((paragraph, index) => (
+              {document.content.body.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
             </div>
-            <div className="mt-8 space-y-4">
-              {docs.article.callouts.map((callout) => (
-                <div
-                  key={callout.title}
-                  className="rounded-2xl border border-dashed border-white/20 bg-black/40 p-4"
-                >
-                  <div className="flex items-center gap-3">
-                    <PlaceholderIcon name="spark" className="h-10 w-10" />
-                    <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/60">
-                      {callout.title}
+            {document.content.callouts.length > 0 && (
+              <div className="mt-8 space-y-4">
+                {document.content.callouts.map((callout, index) => (
+                  <div
+                    key={index}
+                    className="rounded-2xl border border-dashed border-white/20 bg-black/40 p-4"
+                  >
+                    <div className="flex items-center gap-3">
+                      <PlaceholderIcon name="spark" className="h-10 w-10" />
+                      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/60">
+                        {callout.title}
+                      </p>
+                    </div>
+                    <p className="mt-3 text-sm text-white/70">
+                      {callout.content}
                     </p>
                   </div>
-                  <p className="mt-3 text-sm text-white/70">
-                    {callout.content}
-                  </p>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </article>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -203,3 +217,4 @@ export default async function DocsPage() {
     </div>
   );
 }
+
