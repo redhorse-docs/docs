@@ -28,6 +28,41 @@ export type TokenCard = {
   highlight?: string;
 };
 
+export type TokenSnapshot = {
+  contract: {
+    label: string;
+    address: string;
+    helper: string;
+  };
+  metrics: Array<{ label: string; value: string }>;
+  allocation: Array<{ label: string; value: string }>;
+  links: Array<{ label: string; href: string }>;
+};
+
+export type SecurityHighlight = {
+  title: string;
+  description: string;
+  badge?: string;
+};
+
+export type RoadmapItem = {
+  quarter: string;
+  title: string;
+  description: string;
+  status: "done" | "in-progress" | "planned";
+};
+
+export type CommunityChannel = {
+  title: string;
+  description: string;
+  action: string;
+};
+
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
 export type LandingContent = {
   hero: HeroContent;
   whatIs: {
@@ -44,5 +79,26 @@ export type LandingContent = {
     title: string;
     description: string;
     tiers: MembershipTier[];
+  };
+  tokenInfo: TokenSnapshot;
+  security: {
+    title: string;
+    description: string;
+    highlights: SecurityHighlight[];
+  };
+  roadmap: {
+    title: string;
+    description: string;
+    items: RoadmapItem[];
+  };
+  community: {
+    title: string;
+    description: string;
+    channels: CommunityChannel[];
+  };
+  faq: {
+    title: string;
+    description: string;
+    items: FaqItem[];
   };
 };
