@@ -185,6 +185,8 @@ function CreateDocumentForm({
   const [slug, setSlug] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const normalizeSlug = (value: string) =>
+    value.trim().toLowerCase().replace(/\s+/g, "-");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -193,7 +195,7 @@ function CreateDocumentForm({
     }
 
     onSubmit({
-      slug: slug.trim().toLowerCase().replace(/\s+/g, "-"),
+      slug: normalizeSlug(slug),
       title: title.trim(),
       description: description.trim() || undefined,
     });
@@ -219,9 +221,18 @@ function CreateDocumentForm({
             className="w-full rounded-xl border border-white/15 bg-black/40 px-3 py-2 text-white placeholder:text-white/40 focus:border-white/40 focus:outline-none"
             required
           />
-          <p className="mt-1 text-xs text-white/40">
-            URL에 사용될 경로입니다. (예: /docs/getting-started)
-          </p>
+          <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-white/40">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => setSlug(normalizeSlug(title))}
+              disabled={!title.trim()}
+              className="text-xs"
+            >
+              제목으로 슬러그 만들기
+            </Button>
+            <span>예: /docs/getting-started</span>
+          </div>
         </div>
         <div>
           <label className="mb-2 block text-xs uppercase tracking-[0.3em] text-white/50">
@@ -332,4 +343,3 @@ function DocumentCard({
     </div>
   );
 }
-
