@@ -1,9 +1,13 @@
+import { getDocsContent } from "@/app/admin/docs-actions";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { PlaceholderIcon } from "@/components/ui/placeholder-icon";
-import { docsNav, docsHighlights, docsArticle } from "@/lib/data/docs.mock";
 
-export default function DocsPage() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default async function DocsPage() {
+  const docs = await getDocsContent();
   return (
     <div className="bg-[var(--rh-background)] py-16 text-white">
       <div className="border-b border-white/10 bg-white/5">
@@ -14,17 +18,16 @@ export default function DocsPage() {
             </p>
             <div className="space-y-4">
               <h1 className="text-4xl font-semibold tracking-tight">
-                RedHorse Knowledge Base
+                {docs.header.title}
               </h1>
               <p className="text-base text-white/70">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                vitae elit libero, a pharetra augue suspendisse vitae.
+                {docs.header.description}
               </p>
             </div>
             <div className="relative">
               <input
                 type="search"
-                placeholder="Search guides, API reference, roadmap..."
+                placeholder={docs.header.searchPlaceholder}
                 className="w-full rounded-2xl border border-white/15 bg-black/40 py-3 pl-12 pr-4 text-sm text-white placeholder:text-white/40 focus:border-white/50 focus:outline-none"
               />
               <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-white/50">
@@ -32,12 +35,12 @@ export default function DocsPage() {
               </span>
             </div>
             <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
-              {["Overview", "Membership", "Token", "Security"].map((chip) => (
+              {docs.header.tags.map((tag) => (
                 <span
-                  key={chip}
+                  key={tag}
                   className="rounded-full border border-white/15 px-3 py-1"
                 >
-                  {chip}
+                  {tag}
                 </span>
               ))}
             </div>
@@ -47,25 +50,24 @@ export default function DocsPage() {
               Quickstart
             </p>
             <h2 className="mt-3 text-xl font-semibold">
-              Build a Landing in 3 Steps
+              {docs.quickstart.title}
             </h2>
             <p className="mt-2 text-sm text-white/70">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do
-              eiusmod tempor.
+              {docs.quickstart.description}
             </p>
             <div className="mt-6 space-y-3">
-              {[1, 2, 3].map((step) => (
+              {docs.quickstart.steps.map((step) => (
                 <div
-                  key={step}
+                  key={step.number}
                   className="flex items-center gap-3 rounded-2xl border border-white/10 px-4 py-3 text-sm"
                 >
-                  <span className="text-xs text-white/40">0{step}</span>
-                  <p className="text-white/80">Lorem ipsum step content.</p>
+                  <span className="text-xs text-white/40">0{step.number}</span>
+                  <p className="text-white/80">{step.text}</p>
                 </div>
               ))}
             </div>
-            <Button className="mt-6 w-full" href="/">
-              View Templates
+            <Button className="mt-6 w-full" href={docs.quickstart.ctaHref}>
+              {docs.quickstart.ctaLabel}
             </Button>
           </div>
         </Container>
@@ -82,7 +84,7 @@ export default function DocsPage() {
             </span>
           </div>
           <nav className="space-y-6 text-sm">
-            {docsNav.map((group) => (
+            {docs.nav.map((group) => (
               <div key={group.title} className="space-y-3">
                 <p className="text-xs uppercase tracking-[0.3em] text-white/50">
                   {group.title}
@@ -114,18 +116,20 @@ export default function DocsPage() {
                   Chapter One
                 </p>
                 <h2 className="text-3xl font-semibold text-white">
-                  {docsArticle.title}
+                  {docs.article.title}
                 </h2>
               </div>
-              <div className="text-sm text-white/50">{docsArticle.updated}</div>
+              <div className="text-sm text-white/50">
+                {docs.article.updated}
+              </div>
             </div>
             <div className="space-y-4 pt-6 text-sm leading-relaxed text-white/80">
-              {docsArticle.body.map((paragraph, index) => (
+              {docs.article.body.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
             </div>
             <div className="mt-8 space-y-4">
-              {docsArticle.callouts.map((callout) => (
+              {docs.article.callouts.map((callout) => (
                 <div
                   key={callout.title}
                   className="rounded-2xl border border-dashed border-white/20 bg-black/40 p-4"
@@ -136,14 +140,16 @@ export default function DocsPage() {
                       {callout.title}
                     </p>
                   </div>
-                  <p className="mt-3 text-sm text-white/70">{callout.content}</p>
+                  <p className="mt-3 text-sm text-white/70">
+                    {callout.content}
+                  </p>
                 </div>
               ))}
             </div>
           </article>
 
           <div className="grid gap-4 md:grid-cols-2">
-            {docsHighlights.map((highlight) => (
+            {docs.highlights.map((highlight) => (
               <div
                 key={highlight.title}
                 className="rounded-3xl border border-white/10 bg-white/5 p-6"

@@ -1,3 +1,5 @@
+import { DocsContent, DocsNavGroup } from "@/lib/types/docs";
+
 export const docsNav = [
   {
     title: "Getting Started",
@@ -53,4 +55,29 @@ export const docsArticle = {
         "Praesent commodo cursus magna vel scelerisque nisl consectetur et. Sed posuere consectetur est at lobortis.",
     },
   ],
+};
+
+export const docsMock: DocsContent = {
+  header: {
+    title: "RedHorse Knowledge Base",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue suspendisse vitae.",
+    searchPlaceholder: "Search guides, API reference, roadmap...",
+    tags: ["Overview", "Membership", "Token", "Security"],
+  },
+  quickstart: {
+    title: "Build a Landing in 3 Steps",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.",
+    steps: [
+      { number: 1, text: "Lorem ipsum step content." },
+      { number: 2, text: "Lorem ipsum step content." },
+      { number: 3, text: "Lorem ipsum step content." },
+    ],
+    ctaLabel: "View Templates",
+    ctaHref: "/",
+  },
+  nav: docsNav as DocsNavGroup[],
+  article: docsArticle,
+  highlights: docsHighlights,
 };
