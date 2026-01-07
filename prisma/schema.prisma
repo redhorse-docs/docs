@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  // Prisma 7에서는 url을 prisma.config.ts로 이동
+}
+
+model LandingContent {
+  id        String   @id @default("default")
+  content   Json     // LandingContent 타입의 JSON 데이터
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@map("landing_content")
+}

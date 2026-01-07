@@ -1,29 +1,51 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import {
+  getLandingContent,
+  resetLandingContent,
+  saveLandingContent,
+} from "@/app/admin/actions";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
-import type { LandingContent, MembershipTier } from "@/lib/types/landing";
 import { landingMock } from "@/lib/data/landing.mock";
-
-const STORAGE_KEY = "redhorse-landing";
+import type { LandingContent, MembershipTier } from "@/lib/types/landing";
+import { useEffect, useState, useTransition, type ReactNode } from "react";
 
 export default function AdminPage() {
   const [content, setContent] = useState<LandingContent>(landingMock);
   const [status, setStatus] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isPending, startTransition] = useTransition();
 
+  // DB를 이용해서 데이터 로딩
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored) {
+    async function loadContent() {
       try {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setContent(JSON.parse(stored) as LandingContent);
-      } catch {
-        window.localStorage.removeItem(STORAGE_KEY);
+        const data = await getLandingContent();
+        setContent(data);
+      } catch (error) {
+        console.error("Failed to load landing content from database", error);
+        setStatus("데이터 로딩에 실패했습니다. 기본값으로 설정합니다.");
+      } finally {
+        setIsLoading(false);
       }
     }
+
+    loadContent();
   }, []);
+
+  // useEffect(() => {
+  //   if (typeof window === "undefined") return;
+  //   const stored = window.localStorage.getItem(STORAGE_KEY);
+  //   if (stored) {
+  //     try {
+  //       // eslint-disable-next-line react-hooks/set-state-in-effect
+  //       setContent(JSON.parse(stored) as LandingContent);
+  //     } catch {
+  //       window.localStorage.removeItem(STORAGE_KEY);
+  //     }
+  //   }
+  // }, []);
 
   const flashStatus = (message: string) => {
     setStatus(message);
@@ -31,16 +53,20 @@ export default function AdminPage() {
   };
 
   const handleSave = () => {
-    if (typeof window === "undefined") return;
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
-    flashStatus("로컬 저장소에 저장했습니다. / 에서 새로고침하여 미리보기하세요.");
+    startTransition(async () => {
+      const result = await saveLandingContent(content);
+      flashStatus(result.message);
+    });
   };
 
   const handleReset = () => {
-    if (typeof window === "undefined") return;
-    setContent(landingMock);
-    window.localStorage.removeItem(STORAGE_KEY);
-    flashStatus("기본 lorem 데이터로 되돌렸습니다.");
+    startTransition(async () => {
+      const result = await resetLandingContent();
+      if (result.success) {
+        setContent(result.content);
+      }
+      flashStatus(result.message);
+    });
   };
 
   const handleCopy = async () => {
@@ -52,6 +78,15 @@ export default function AdminPage() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="bg-[var(--rh-background)] py-12 text-white">
+        <Container>
+          <p className="text-sm text-white/70">데이터를 불러오는 중...</p>
+        </Container>
+      </div>
+    );
+  }
   return (
     <div className="bg-[var(--rh-background)] py-12 text-white">
       <Container className="space-y-8">
@@ -61,16 +96,18 @@ export default function AdminPage() {
           </p>
           <h1 className="text-3xl font-semibold">Landing Copy Editor</h1>
           <p className="text-sm text-white/70">
-            각 입력 필드를 수정한 뒤 &ldquo;변경 저장&rdquo;을 누르면 브라우저
-            저장소에 내용이 반영됩니다. 메인 페이지(`/`)를 새로고침하면 저장된
-            문자열로 즉시 미리볼 수 있습니다.
+            각 입력 필드를 수정한 뒤 &ldquo;변경 저장&rdquo;을 누르면
+            데이터베이스에 내용이 반영됩니다. 메인 페이지(`/`)를 새로고침하면
+            저장된 문자열로 즉시 미리볼 수 있습니다.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Button onClick={handleSave}>변경 저장</Button>
-            <Button variant="ghost" onClick={handleCopy}>
+            <Button onClick={handleSave} disabled={isPending}>
+              {isPending ? "저장 중..." : "변경 저장"}
+            </Button>
+            <Button variant="ghost" onClick={handleCopy} disabled={isPending}>
               JSON 복사
             </Button>
-            <Button variant="ghost" onClick={handleReset}>
+            <Button variant="ghost" onClick={handleReset} disabled={isPending}>
               기본값으로 초기화
             </Button>
           </div>
@@ -236,7 +273,10 @@ export default function AdminPage() {
           />
           <div className="grid gap-4 md:grid-cols-3">
             {content.howItWorks.steps.map((step, index) => (
-              <div key={step.name + index} className="rounded-2xl border border-white/10 p-4">
+              <div
+                key={step.name + index}
+                className="rounded-2xl border border-white/10 p-4"
+              >
                 <TextField
                   label="Step Title"
                   value={step.name}
@@ -244,7 +284,10 @@ export default function AdminPage() {
                     setContent((prev) => {
                       const steps = [...prev.howItWorks.steps];
                       steps[index] = { ...steps[index], name: value };
-                      return { ...prev, howItWorks: { ...prev.howItWorks, steps } };
+                      return {
+                        ...prev,
+                        howItWorks: { ...prev.howItWorks, steps },
+                      };
                     })
                   }
                 />
@@ -255,7 +298,10 @@ export default function AdminPage() {
                     setContent((prev) => {
                       const steps = [...prev.howItWorks.steps];
                       steps[index] = { ...steps[index], description: value };
-                      return { ...prev, howItWorks: { ...prev.howItWorks, steps } };
+                      return {
+                        ...prev,
+                        howItWorks: { ...prev.howItWorks, steps },
+                      };
                     })
                   }
                 />
@@ -294,7 +340,10 @@ export default function AdminPage() {
                   setContent((prev) => {
                     const tiers = [...prev.membership.tiers];
                     tiers[index] = updated;
-                    return { ...prev, membership: { ...prev.membership, tiers } };
+                    return {
+                      ...prev,
+                      membership: { ...prev.membership, tiers },
+                    };
                   })
                 }
               />
@@ -367,15 +416,24 @@ export default function AdminPage() {
           />
           <div className="grid gap-4 md:grid-cols-3">
             {content.security.highlights.map((highlight, index) => (
-              <div key={highlight.title + index} className="rounded-2xl border border-white/10 p-4">
+              <div
+                key={highlight.title + index}
+                className="rounded-2xl border border-white/10 p-4"
+              >
                 <TextField
                   label="Highlight Title"
                   value={highlight.title}
                   onChange={(value) =>
                     setContent((prev) => {
                       const highlights = [...prev.security.highlights];
-                      highlights[index] = { ...highlights[index], title: value };
-                      return { ...prev, security: { ...prev.security, highlights } };
+                      highlights[index] = {
+                        ...highlights[index],
+                        title: value,
+                      };
+                      return {
+                        ...prev,
+                        security: { ...prev.security, highlights },
+                      };
                     })
                   }
                 />
@@ -385,8 +443,14 @@ export default function AdminPage() {
                   onChange={(value) =>
                     setContent((prev) => {
                       const highlights = [...prev.security.highlights];
-                      highlights[index] = { ...highlights[index], description: value };
-                      return { ...prev, security: { ...prev.security, highlights } };
+                      highlights[index] = {
+                        ...highlights[index],
+                        description: value,
+                      };
+                      return {
+                        ...prev,
+                        security: { ...prev.security, highlights },
+                      };
                     })
                   }
                 />
@@ -418,7 +482,10 @@ export default function AdminPage() {
           />
           <div className="space-y-4">
             {content.roadmap.items.map((item, index) => (
-              <div key={item.title + index} className="rounded-2xl border border-white/10 p-4">
+              <div
+                key={item.title + index}
+                className="rounded-2xl border border-white/10 p-4"
+              >
                 <TextField
                   label="Milestone Title"
                   value={item.title}
@@ -469,7 +536,10 @@ export default function AdminPage() {
           />
           <div className="grid gap-4 md:grid-cols-2">
             {content.community.channels.map((channel, index) => (
-              <div key={channel.title + index} className="rounded-2xl border border-white/10 p-4">
+              <div
+                key={channel.title + index}
+                className="rounded-2xl border border-white/10 p-4"
+              >
                 <TextField
                   label="Channel Title"
                   value={channel.title}
@@ -477,7 +547,10 @@ export default function AdminPage() {
                     setContent((prev) => {
                       const channels = [...prev.community.channels];
                       channels[index] = { ...channels[index], title: value };
-                      return { ...prev, community: { ...prev.community, channels } };
+                      return {
+                        ...prev,
+                        community: { ...prev.community, channels },
+                      };
                     })
                   }
                 />
@@ -487,8 +560,14 @@ export default function AdminPage() {
                   onChange={(value) =>
                     setContent((prev) => {
                       const channels = [...prev.community.channels];
-                      channels[index] = { ...channels[index], description: value };
-                      return { ...prev, community: { ...prev.community, channels } };
+                      channels[index] = {
+                        ...channels[index],
+                        description: value,
+                      };
+                      return {
+                        ...prev,
+                        community: { ...prev.community, channels },
+                      };
                     })
                   }
                 />
@@ -499,7 +578,10 @@ export default function AdminPage() {
                     setContent((prev) => {
                       const channels = [...prev.community.channels];
                       channels[index] = { ...channels[index], action: value };
-                      return { ...prev, community: { ...prev.community, channels } };
+                      return {
+                        ...prev,
+                        community: { ...prev.community, channels },
+                      };
                     })
                   }
                 />
@@ -531,7 +613,10 @@ export default function AdminPage() {
           />
           <div className="space-y-4">
             {content.faq.items.map((item, index) => (
-              <div key={item.question + index} className="rounded-2xl border border-white/10 p-4">
+              <div
+                key={item.question + index}
+                className="rounded-2xl border border-white/10 p-4"
+              >
                 <TextField
                   label="Question"
                   value={item.question}
@@ -637,7 +722,10 @@ function TierEditor({ tier, onChange }: TierEditorProps) {
         onChange={(value) =>
           onChange({
             ...tier,
-            perks: value.split("\n").map((perk) => perk.trim()).filter(Boolean),
+            perks: value
+              .split("\n")
+              .map((perk) => perk.trim())
+              .filter(Boolean),
           })
         }
       />
