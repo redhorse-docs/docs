@@ -48,3 +48,4 @@ next-env.d.ts
 
 # 로그 파일
 *.log
+.env*.local

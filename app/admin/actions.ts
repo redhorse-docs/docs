@@ -7,6 +7,10 @@ import { prisma } from "@/lib/utils/prisma";
 
 /** 데이터 베이스에서 LandingContent를 불러온다. */
 export async function getLandingContent(): Promise<LandingContent> {
+  if (!process.env.DATABASE_URL) {
+    return landingMock;
+  }
+
   try {
     const record = await prisma.landingContent.findUnique({
       where: { id: "default" },
