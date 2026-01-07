@@ -1,65 +1,197 @@
-import Image from "next/image";
+import { Hero } from "@/components/sections/hero";
+import { SectionShell } from "@/components/ui/section-shell";
+import { landingMock } from "@/lib/data/landing.mock";
+
+const placeholderCard =
+  "rounded-2xl border border-white/10 bg-white/5 p-6 text-white/60";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="bg-[var(--rh-background)] text-white">
+      <Hero {...landingMock.hero} />
+
+      <SectionShell
+        id="what"
+        eyebrow="What is RH"
+        title="Three blocks to articulate the value prop"
+        description="Use this area to lock spacing, card gutters, and responsive flow. Copy will be swapped later."
+      >
+        <div className="grid gap-6 md:grid-cols-3">
+          {[...Array(3)].map((_, index) => (
+            <div key={index} className={placeholderCard}>
+              <div className="mb-4 h-10 w-10 rounded-full bg-white/10" />
+              <div className="h-4 w-3/4 rounded-full bg-white/20" />
+              <div className="mt-3 h-3 w-full rounded-full bg-white/10" />
+              <div className="mt-2 h-3 w-4/5 rounded-full bg-white/10" />
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </SectionShell>
+
+      <SectionShell
+        id="how"
+        eyebrow="How It Works"
+        title="Three step process"
+        description="Each card locks the columns and ensures content stays balanced on tablet/mobile."
+      >
+        <div className="grid gap-6 md:grid-cols-3">
+          {[...Array(3)].map((_, index) => (
+            <div key={index} className={placeholderCard}>
+              <p className="text-sm text-white/40">Step {index + 1}</p>
+              <div className="mt-3 h-4 w-2/3 rounded-full bg-white/20" />
+              <div className="mt-2 h-3 w-full rounded-full bg-white/10" />
+              <div className="mt-2 h-3 w-4/5 rounded-full bg-white/10" />
+            </div>
+          ))}
         </div>
-      </main>
+      </SectionShell>
+
+      <SectionShell
+        id="membership"
+        eyebrow="Membership Tiers"
+        title="Tier grid placeholder"
+        description="This grid keeps cards aligned with equal height CTAs."
+      >
+        <div className="grid gap-6 md:grid-cols-3">
+          {[...Array(3)].map((_, index) => (
+            <div
+              key={index}
+              className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/[0.04] p-6"
+            >
+              <div className="flex items-center justify-between">
+                <div className="h-4 w-20 rounded-full bg-white/20" />
+                {index === 1 && (
+                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white">
+                    Featured
+                  </span>
+                )}
+              </div>
+              <div className="space-y-2">
+                {[...Array(3)].map((item) => (
+                  <div key={item} className="h-3 rounded-full bg-white/10" />
+                ))}
+              </div>
+              <div className="mt-auto h-10 rounded-full bg-white/15" />
+            </div>
+          ))}
+        </div>
+      </SectionShell>
+
+      <SectionShell
+        id="token"
+        eyebrow="Token Info"
+        title="Snapshot cards"
+        description="Lock contract, allocation, and chain detail spacing."
+      >
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className={placeholderCard}>
+            <p className="text-xs uppercase tracking-[0.3em] text-white/40">
+              Contract
+            </p>
+            <div className="mt-3 h-4 w-3/4 rounded bg-white/15" />
+            <div className="mt-4 h-10 w-32 rounded-full bg-white/15" />
+          </div>
+          <div className={placeholderCard}>
+            <div className="h-4 w-32 rounded-full bg-white/20" />
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {[...Array(4)].map((_, index) => (
+                <div key={index} className="h-16 rounded-2xl bg-white/5" />
+              ))}
+            </div>
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell
+        id="security"
+        eyebrow="Security"
+        title="Audit and controls"
+        description="Three highlight cards anchor this section."
+      >
+        <div className="grid gap-6 md:grid-cols-3">
+          {[...Array(3)].map((_, index) => (
+            <div key={index} className={placeholderCard}>
+              <div className="h-4 w-1/2 rounded-full bg-white/20" />
+              <div className="mt-3 space-y-2">
+                {[...Array(3)].map((item) => (
+                  <div key={item} className="h-3 rounded-full bg-white/10" />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionShell>
+
+      <SectionShell
+        id="roadmap"
+        eyebrow="Roadmap"
+        title="Timeline blocks"
+        description="Vertical layout ensures future timeline items fit."
+      >
+        <div className="space-y-6">
+          {[...Array(4)].map((_, index) => (
+            <div
+              key={index}
+              className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/5 p-6 md:flex-row md:items-center md:gap-8"
+            >
+              <div className="w-24 text-sm font-semibold text-white">Q{index + 1}</div>
+              <div className="flex-1 space-y-2">
+                <div className="h-4 w-1/2 rounded-full bg-white/20" />
+                <div className="h-3 w-full rounded-full bg-white/10" />
+                <div className="h-3 w-4/5 rounded-full bg-white/10" />
+              </div>
+              <div className="h-8 w-24 rounded-full bg-white/10" />
+            </div>
+          ))}
+        </div>
+      </SectionShell>
+
+      <SectionShell
+        id="community"
+        eyebrow="Community"
+        title="Links and channels"
+        description="Placeholder cards keep spacing ready for real community links."
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          {[...Array(2)].map((_, index) => (
+            <div
+              key={index}
+              className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/5 p-6"
+            >
+              <div className="h-4 w-1/3 rounded-full bg-white/20" />
+              <div className="space-y-2">
+                {[...Array(3)].map((item) => (
+                  <div key={item} className="h-3 w-5/6 rounded-full bg-white/10" />
+                ))}
+              </div>
+              <div className="mt-auto h-10 rounded-full bg-white/10" />
+            </div>
+          ))}
+        </div>
+      </SectionShell>
+
+      <SectionShell
+        id="faq"
+        eyebrow="FAQ"
+        title="Accordion placeholder"
+        description="Accordion component will mount here later."
+      >
+        <div className="space-y-4">
+          {[...Array(4)].map((_, index) => (
+            <div
+              key={index}
+              className="rounded-2xl border border-white/10 bg-white/5 p-4"
+            >
+              <div className="flex items-center justify-between text-white">
+                <div className="h-4 w-2/3 rounded-full bg-white/20" />
+                <div className="h-6 w-6 rounded-full bg-white/10" />
+              </div>
+              <div className="mt-3 h-3 w-full rounded-full bg-white/10" />
+              <div className="mt-2 h-3 w-5/6 rounded-full bg-white/10" />
+            </div>
+          ))}
+        </div>
+      </SectionShell>
     </div>
   );
 }
