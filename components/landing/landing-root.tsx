@@ -1,5 +1,6 @@
 "use client";
 
+import { getLandingContent } from "@/app/admin/actions";
 import { CommunitySection } from "@/components/sections/community";
 import { FaqSection } from "@/components/sections/faq";
 import { Hero } from "@/components/sections/hero";
@@ -10,14 +11,27 @@ import { SecuritySection } from "@/components/sections/security";
 import { TokenInfoSection } from "@/components/sections/token-info";
 import { WhatIsSection } from "@/components/sections/what-is";
 import type { LandingContent } from "@/lib/types/landing";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type LandingRootProps = {
   initialContent: LandingContent;
 };
 
 export function LandingRoot({ initialContent }: LandingRootProps) {
-  const [content] = useState<LandingContent>(initialContent);
+  const [content, setContent] = useState<LandingContent>(initialContent);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      try {
+        const latestContent = await getLandingContent();
+        setContent(latestContent);
+      } catch (error) {
+        console.error("Failed to fetch latest landing content", error);
+      }
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="bg-[var(--rh-background)] text-white">
