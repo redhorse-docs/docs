@@ -46,3 +46,15 @@ export type DocsContent = {
   // 하이라이트
   highlights: DocsHighlight[];
 };
+
+export type DocDocument = {
+  id: string;
+  slug: string;
+  title: string;
+  description?: string;
+  content: DocsArticle;
+  order: number;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+};

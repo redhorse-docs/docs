@@ -28,3 +28,17 @@ model DocsContent {
 
   @@map("docs_content")
 }
+
+model DocDocument {
+  id          String   @id @default(uuid())
+  slug        String   @unique  // URL 경로 (예: "getting-started", "api-reference")
+  title       String
+  description String?
+  content     Json     // DocsArticle 타입의 JSON 데이터
+  order       Int      @default(0)  // 정렬 순서
+  published   Boolean  @default(true)
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+
+  @@map("doc_documents")
+}
