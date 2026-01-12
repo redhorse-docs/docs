@@ -6,9 +6,9 @@ import {
   getDocDocuments,
   updateDocDocument,
 } from "@/app/admin/docs-actions";
+import { Button } from "@/components/ui/button";
 import type { DocDocument } from "@/lib/types/docs";
 import { useEffect, useState, useTransition } from "react";
-import { Button } from "@/components/ui/button";
 
 type DocumentsManagerProps = {
   onSelectDocument?: (document: DocDocument) => void;
@@ -146,7 +146,7 @@ export function DocumentsManager({
         <div className="rounded-3xl border border-white/10 bg-white/5 p-12 text-center">
           <p className="text-white/60">아직 문서가 없습니다.</p>
           <p className="mt-2 text-sm text-white/40">
-            "+ 새 문서 추가" 버튼을 눌러 첫 문서를 만들어보세요.
+            &quot;+ 새 문서 추가&quot; 버튼을 눌러 첫 문서를 만들어보세요.
           </p>
         </div>
       ) : (

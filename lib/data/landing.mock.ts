@@ -194,19 +194,20 @@ export const landingMock: LandingContent = {
       "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
     channels: [
       {
-        title: "Signal Radio",
+        title: "Telegram",
         description:
-          "Nullam quis risus eget urna mollis ornare vel eu leo aliquam.",
-        action: "Follow Channel",
-        image: "/project_wireframe.png",
+          "Catch trade alerts and community bulletins the instant they publish.",
+        action: "Join Telegram",
+        href: "https://t.me/RedHorse_RHcoin",
         icon: "wave",
       },
       {
-        title: "Builders Forum",
+        title: "X (Twitter)",
         description:
-          "Etiam porta sem malesuada magna mollis euismod condimentum.",
-        action: "Enter Forum",
-        icon: "stack",
+          "Follow real-time roadmap drops and team insights through curated threads.",
+        action: "Follow on X",
+        href: "https://x.com/RedHorse_RH",
+        icon: "spark",
       },
     ],
   },

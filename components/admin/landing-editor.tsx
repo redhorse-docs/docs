@@ -517,6 +517,19 @@ export function LandingEditor({ content, onChange }: LandingEditorProps) {
                   });
                 }}
               />
+              <TextField
+                label="Channel URL"
+                value={channel.href}
+                placeholder="https://"
+                onChange={(value) => {
+                  const channels = [...content.community.channels];
+                  channels[index] = { ...channels[index], href: value };
+                  onChange({
+                    ...content,
+                    community: { ...content.community, channels },
+                  });
+                }}
+              />
             </div>
           ))}
         </div>

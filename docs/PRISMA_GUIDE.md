@@ -39,8 +39,7 @@ Prisma는 **타입 안전한 데이터베이스 ORM**입니다.
 // prisma/schema.prisma
 
 generator client {
-  provider = "prisma-client"
-  output   = "../lib/generated/prisma"  // 커스텀 출력 경로 (선택)
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -144,7 +143,7 @@ model Profile {
 
 ```typescript
 // lib/utils/prisma.ts
-import { PrismaClient } from "@/lib/generated/prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 // 개발 환경에서 Hot Reload 시 인스턴스 재생성 방지
 const globalForPrisma = globalThis as unknown as {
@@ -168,7 +167,7 @@ if (process.env.NODE_ENV !== "production") {
 ### 2. PostgreSQL 어댑터 사용 (Connection Pooling)
 
 ```typescript
-import { PrismaClient } from "@/lib/generated/prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 

@@ -1,7 +1,7 @@
 "use server";
 
 import { docsMock } from "@/lib/data/docs.mock";
-import type { Prisma } from "@/lib/generated/prisma/client";
+import type { Prisma } from "@prisma/client";
 import type { DocDocument, DocsArticle, DocsContent } from "@/lib/types/docs";
 import { prisma } from "@/lib/utils/prisma";
 

@@ -1,7 +1,7 @@
 "use server";
 
 import { landingMock } from "@/lib/data/landing.mock";
-import type { Prisma } from "@/lib/generated/prisma/client";
+import type { Prisma } from "@prisma/client";
 import type { LandingContent } from "@/lib/types/landing";
 import { prisma } from "@/lib/utils/prisma";
 

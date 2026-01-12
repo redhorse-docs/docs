@@ -60,6 +60,7 @@ export type CommunityChannel = {
   title: string;
   description: string;
   action: string;
+  href: string;
   image?: string;
   icon?: IconName;
 };
