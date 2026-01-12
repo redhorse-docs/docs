@@ -7,7 +7,10 @@ export const landingMock: LandingContent = {
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus amet lacus nec rutrum ultrices.",
     ctas: [
       { label: "Launch App", href: "/app" },
-      { label: "Explore Docs", href: "/docs" },
+      {
+        label: "Explore Docs",
+        href: "https://rh-project.gitbook.io/red-horse-rh/",
+      },
     ],
   },
   whatIs: {

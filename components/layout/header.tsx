@@ -1,14 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
 import { navLinks, primaryCtas } from "@/lib/constants/nav";
 import { cn } from "@/lib/utils/cn";
-import { Container } from "./container";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import { Button } from "../ui/button";
+import { Container } from "./container";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [primaryAction, secondaryAction] = primaryCtas;
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
   const closeMenu = () => setMenuOpen(false);
@@ -20,7 +22,7 @@ export function Header() {
           href="/"
           className="text-sm font-semibold uppercase tracking-[0.3em] text-white"
         >
-          LOGO | RedHorse
+          <Image src='/redhorse-logo.png' alt='RedHorse' width={200} height={200} />
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-white/70 lg:flex">
           {navLinks.map((link) => (
@@ -38,10 +40,14 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
-          <Button variant="ghost" href={primaryCtas[1].href}>
-            {primaryCtas[1].label}
-          </Button>
-          <Button href={primaryCtas[0].href}>{primaryCtas[0].label}</Button>
+          {secondaryAction && (
+            <Button variant="ghost" href={secondaryAction.href}>
+              {secondaryAction.label}
+            </Button>
+          )}
+          {primaryAction && (
+            <Button href={primaryAction.href}>{primaryAction.label}</Button>
+          )}
         </div>
         <button
           className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white lg:hidden"
@@ -75,10 +81,14 @@ export function Header() {
               ))}
             </nav>
             <div className="flex flex-col gap-3">
-              <Button href={primaryCtas[0].href}>{primaryCtas[0].label}</Button>
-              <Button variant="ghost" href={primaryCtas[1].href}>
-                {primaryCtas[1].label}
-              </Button>
+              {primaryAction && (
+                <Button href={primaryAction.href}>{primaryAction.label}</Button>
+              )}
+              {secondaryAction && (
+                <Button variant="ghost" href={secondaryAction.href}>
+                  {secondaryAction.label}
+                </Button>
+              )}
             </div>
           </Container>
         </div>

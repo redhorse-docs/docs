@@ -6,10 +6,10 @@ export const navLinks = [
   { label: "Roadmap", href: "#roadmap" },
   { label: "Community", href: "#community" },
   { label: "FAQ", href: "#faq" },
-  { label: "Docs", href: "/docs" },
+  { label: "Docs", href: "https://rh-project.gitbook.io/red-horse-rh/" },
 ];
 
 export const primaryCtas = [
   { label: "Launch App", href: "/app" },
-  { label: "Read Whitepaper", href: "/docs" },
+  // { label: "Read Whitepaper", href: "/docs" },
 ];

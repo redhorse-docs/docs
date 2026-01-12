@@ -39,20 +39,23 @@ export function Hero({ title, subtitle, ctas }: HeroProps) {
             ))}
           </div>
         </div>
-        <div className="relative rounded-[32px] border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6">
-          <div className="relative h-72 w-full overflow-hidden rounded-3xl border border-white/10 bg-black/70">
-            <Image
-              src="/project_wireframe.png"
-              alt="RedHorse wireframe preview"
-              fill
-              sizes="(min-width: 1024px) 520px, 100vw"
-              className="object-contain object-center opacity-80"
-              priority
-            />
-          </div>
-          <div className="mt-4 flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/50">
-            <span>Wireframe</span>
-            <span>Responsive Preview</span>
+        <div className="relative flex w-full items-center justify-center">
+          <div className="relative flex h-72 w-full max-w-xl flex-col items-center justify-center gap-6 p-6 md:h-80">
+            <div className="relative flex w-full items-center justify-center">
+              <div className="relative size-40 overflow-visible rounded-[28px] bg-black/30 p-6 shadow-[0_0_40px_rgba(224,50,58,0.25)] token-float-slow md:size-48">
+                <span className="token-glow-ring" aria-hidden />
+                <span className="token-orbit token-orbit--slow" aria-hidden />
+                <span className="token-orbit token-orbit--fast" aria-hidden />
+                <Image
+                  src="/visual.png"
+                  alt="RedHorse motion token"
+                  fill
+                  sizes="(min-width: 1024px) 260px, 60vw"
+                  className="object-contain drop-shadow-[0_18px_40px_rgba(224,50,58,0.45)]"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
       </Container>

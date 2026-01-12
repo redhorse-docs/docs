@@ -42,3 +42,122 @@ body {
   background: var(--rh-primary-muted);
   color: var(--rh-text);
 }
+
+@keyframes token-float-up {
+  0% {
+    transform: translateY(-6px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-6px);
+  }
+}
+
+.token-float-slow {
+  animation: token-float-up 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes token-bounce-right {
+  0% {
+    transform: translateY(6px) rotate(-1.5deg) scale(0.98);
+  }
+  20% {
+    transform: translateY(-18px) rotate(2deg) scale(1.02);
+  }
+  38% {
+    transform: translateY(10px) rotate(-0.8deg) scale(0.99);
+  }
+  58% {
+    transform: translateY(-12px) rotate(1.2deg) scale(1.01);
+  }
+  76% {
+    transform: translateY(4px) rotate(-0.4deg) scale(0.99);
+  }
+  100% {
+    transform: translateY(6px) rotate(0deg) scale(1);
+  }
+}
+
+.token-bounce-right {
+  animation: token-bounce-right 3.8s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+  animation-delay: 0.4s;
+  will-change: transform;
+}
+
+@keyframes token-orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes token-glow-pulse {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+  55% {
+    opacity: 0.08;
+    transform: scale(1.18);
+  }
+  100% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+}
+
+.token-glow-ring {
+  position: absolute;
+  inset: -32px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(224, 50, 58, 0.45), transparent 65%);
+  filter: blur(24px);
+  opacity: 0.25;
+  animation: token-glow-pulse 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.token-orbit {
+  position: absolute;
+  inset: -24px;
+  border-radius: 9999px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  mix-blend-mode: screen;
+  animation: token-orbit-spin 14s linear infinite;
+  pointer-events: none;
+}
+
+.token-orbit::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(224, 50, 58, 0.25);
+  opacity: 0.5;
+}
+
+.token-orbit--fast {
+  inset: -40px;
+  border-color: rgba(224, 50, 58, 0.35);
+  animation-duration: 10s;
+  animation-direction: reverse;
+}
+
+.token-orbit--slow {
+  border-color: rgba(255, 255, 255, 0.2);
+  animation-duration: 18s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .token-float-slow,
+  .token-bounce-right,
+  .token-orbit,
+  .token-glow-ring {
+    animation: none;
+  }
+}

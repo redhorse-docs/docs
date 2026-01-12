@@ -1,11 +1,4 @@
-import Link from "next/link";
 import { Container } from "./container";
-
-const footerLinks = [
-  { label: "Docs", href: "/docs" },
-  { label: "Community", href: "#" },
-  { label: "Status", href: "#" },
-];
 
 export function Footer() {
   return (
@@ -14,17 +7,6 @@ export function Footer() {
         <div className="space-y-2 text-xs uppercase tracking-[0.3em] text-white/50">
           <p>RedHorse</p>
           <p>Experimental membership rail</p>
-        </div>
-        <div className="flex flex-col gap-3 text-sm md:flex-row md:items-center md:gap-6">
-          {footerLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="hover:text-white transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
         </div>
         <p className="text-xs text-white/40">
           © {new Date().getFullYear()} RedHorse Protocol. All rights reserved.

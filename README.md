@@ -20,6 +20,18 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Admin Access
+
+The `/admin` route is secured with HTTP Basic Auth through Next.js middleware.  
+Create a `.env.local` file (or copy `.env.example`) and define credentials before running the dev server:
+
+```bash
+BASIC_AUTH_USER=admin
+BASIC_AUTH_PASS=super-secret-token
+```
+
+Restart `npm run dev` after adjusting credentials. Browsers will prompt for the username and password the first time you visit `/admin`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
