@@ -79,49 +79,6 @@ export function Hero({ title, subtitle, ctas }: HeroProps) {
               <div className="absolute left-1/2 top-4 h-80 w-80 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,_rgba(224,50,58,0.45),_transparent_60%)] blur-3xl md:h-96 md:w-96" />
               <div className="absolute right-10 top-16 h-60 w-60 rounded-full bg-[radial-gradient(circle,_rgba(106,94,251,0.45),_transparent_65%)] blur-3xl md:h-72 md:w-72" />
             </div>
-            {/* Floating tokens */}
-            <div className="pointer-events-none absolute inset-0 hidden md:block">
-              <Image
-                src="/tokens/Solana_Camera1.png"
-                alt="Solana"
-                width={72}
-                height={72}
-                className="token-float-slow absolute -left-4 top-1/4 drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
-                style={{ animationDelay: "0s" }}
-              />
-              <Image
-                src="/tokens/Ethereum_Camera1.png"
-                alt="Ethereum"
-                width={56}
-                height={56}
-                className="token-float-slow absolute -right-2 top-1/3 drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
-                style={{ animationDelay: "1.2s" }}
-              />
-              <Image
-                src="/tokens/Bitcoin_Camera1.png"
-                alt="Bitcoin"
-                width={48}
-                height={48}
-                className="token-float-slow absolute bottom-1/4 left-0 drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
-                style={{ animationDelay: "2.4s" }}
-              />
-              <Image
-                src="/tokens/USDCoin_Camera1.png"
-                alt="USDC"
-                width={44}
-                height={44}
-                className="token-float-slow absolute -right-4 bottom-1/3 drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
-                style={{ animationDelay: "0.8s" }}
-              />
-              <Image
-                src="/tokens/Tether_Camera1.png"
-                alt="Tether"
-                width={40}
-                height={40}
-                className="token-float-slow absolute left-8 top-0 drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
-                style={{ animationDelay: "1.8s" }}
-              />
-            </div>
             <div className="relative">
               <div className="relative flex w-full items-center justify-center">
                 <div className="token-float-slow relative size-52 overflow-visible rounded-[32px] bg-black/40 p-8 shadow-[0_0_60px_rgba(224,50,58,0.35)] md:size-64 lg:size-72">
