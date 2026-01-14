@@ -1,6 +1,7 @@
 import { SectionShell } from "@/components/ui/section-shell";
 import { PlaceholderIcon } from "@/components/ui/placeholder-icon";
 import type { SecurityHighlight } from "@/lib/types/landing";
+import { cn } from "@/lib/utils/cn";
 
 type SecuritySectionProps = {
   title: string;
@@ -13,6 +14,11 @@ export function SecuritySection({
   description,
   highlights,
 }: SecuritySectionProps) {
+  const highlightVariants = [
+    "border-white/20 bg-gradient-to-br from-[rgba(224,50,58,0.22)] via-white/5 to-transparent",
+    "border-white/15 bg-gradient-to-br from-[rgba(106,94,251,0.2)] via-white/5 to-transparent",
+    "border-white/10 bg-gradient-to-br from-white/12 via-white/5 to-transparent",
+  ];
   return (
     <SectionShell
       id="security"
@@ -21,15 +27,18 @@ export function SecuritySection({
       description={description}
     >
       <div className="grid gap-6 md:grid-cols-3">
-        {highlights.map((highlight) => (
+        {highlights.map((highlight, index) => (
           <article
             key={highlight.title}
-            className="rounded-3xl border border-white/10 bg-white/[0.04] p-6"
+            className={cn(
+              "rounded-3xl border p-6 shadow-[0_20px_45px_rgba(2,4,12,0.35)] backdrop-blur-sm",
+              highlightVariants[index % highlightVariants.length],
+            )}
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <PlaceholderIcon name={highlight.icon} className="h-10 w-10" />
-                <h3 className="text-lg font-semibold text-white">
+                <h3 className="font-heading text-lg font-semibold text-white">
                   {highlight.title}
                 </h3>
               </div>
@@ -39,7 +48,9 @@ export function SecuritySection({
                 </span>
               )}
             </div>
-            <p className="mt-3 text-sm text-white/70">{highlight.description}</p>
+            <p className="font-serif mt-3 text-sm text-white/70">
+              {highlight.description}
+            </p>
           </article>
         ))}
       </div>

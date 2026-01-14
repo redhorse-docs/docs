@@ -1,5 +1,6 @@
 import { SectionShell } from "@/components/ui/section-shell";
 import type { RoadmapItem } from "@/lib/types/landing";
+import { cn } from "@/lib/utils/cn";
 
 type RoadmapSectionProps = {
   title: string;
@@ -18,6 +19,10 @@ export function RoadmapSection({
   description,
   items,
 }: RoadmapSectionProps) {
+  const rowVariants = [
+    "border-white/20 bg-gradient-to-r from-[rgba(224,50,58,0.16)] via-white/5 to-transparent",
+    "border-white/15 bg-gradient-to-r from-[rgba(106,94,251,0.16)] via-white/5 to-transparent",
+  ];
   return (
     <SectionShell
       id="roadmap"
@@ -26,17 +31,24 @@ export function RoadmapSection({
       description={description}
     >
       <div className="space-y-6">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <article
             key={item.title}
-            className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 md:flex-row md:items-center md:gap-8"
+            className={cn(
+              "flex flex-col gap-4 rounded-3xl border p-6 shadow-[0_20px_45px_rgba(2,4,12,0.35)] md:flex-row md:items-center md:gap-8",
+              rowVariants[index % rowVariants.length],
+            )}
           >
             <div className="text-sm font-semibold uppercase tracking-[0.3em] text-white/60">
               {item.quarter}
             </div>
             <div className="flex-1 space-y-2">
-              <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-              <p className="text-sm text-white/70">{item.description}</p>
+              <h3 className="font-heading text-lg font-semibold text-white">
+                {item.title}
+              </h3>
+              <p className="font-serif text-sm text-white/75">
+                {item.description}
+              </p>
             </div>
             <span
               className={`inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-semibold ${statusStyles[item.status]}`}

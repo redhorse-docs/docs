@@ -60,13 +60,15 @@ export function CommunitySection({
                     <p className="text-xs uppercase tracking-[0.3em] text-white/40">
                       Signal Channel
                     </p>
-                    <h3 className="text-xl font-semibold text-white">
+                    <h3 className="font-heading text-xl font-semibold text-white">
                       {channel.title}
                     </h3>
                   </div>
                 </div>
               </div>
-              <p className="text-sm text-white/70">{channel.description}</p>
+              <p className="font-serif text-sm text-white/75">
+                {channel.description}
+              </p>
               <Button
                 variant="ghost"
                 className="mt-auto w-full justify-center border border-white/10 bg-white/5 text-white transition hover:bg-white/10"

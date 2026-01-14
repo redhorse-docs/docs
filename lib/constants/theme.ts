@@ -17,9 +17,11 @@ export const fonts = {
 
 export const buttonStyles = {
   primary:
-    "bg-[--rh-primary] text-white hover:bg-[--rh-primary-strong] focus-visible:outline-[--rh-primary] active:bg-[--rh-primary-strong]",
+    "bg-gradient-to-r from-[--rh-primary] via-[#ff5464] to-[--rh-secondary] text-white shadow-[0_18px_45px_rgba(224,50,58,0.35)] hover:opacity-95 focus-visible:outline-[--rh-primary] active:opacity-90",
+  secondary:
+    "bg-[--rh-surface-muted] text-white border border-white/10 hover:border-white/30 hover:bg-[--rh-surface] focus-visible:outline-[--rh-secondary] shadow-[0_12px_35px_rgba(12,11,26,0.6)]",
   ghost:
-    "border border-white/15 text-white hover:border-white/40 hover:bg-white/5 active:bg-white/10",
+    "border border-white/15 text-white/90 hover:border-white/40 hover:bg-white/5 active:bg-white/10",
   subtle:
     "bg-white/5 text-white hover:bg-white/10 active:bg-white/15 border border-transparent",
 };
