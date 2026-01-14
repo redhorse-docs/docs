@@ -42,7 +42,7 @@ export function Hero({ title, subtitle, ctas }: HeroProps) {
                 <Button
                   key={cta.label}
                   href={cta.href}
-                  variant={index === 0 ? "primary" : "secondary"}
+                  variant={index === 0 ? "primary" : "ghost"}
                   className={
                     index === 0
                       ? "btn-glow px-10 py-5 text-base sm:min-w-[220px] md:text-lg"
