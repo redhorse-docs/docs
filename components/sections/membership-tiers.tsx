@@ -1,6 +1,10 @@
+"use client";
+
 import type { MembershipTier } from "@/lib/types/landing";
 import { SectionShell } from "@/components/ui/section-shell";
 import { Button } from "@/components/ui/button";
+import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
+import { Crown, Medal, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 
 type MembershipSectionProps = {
@@ -10,75 +14,154 @@ type MembershipSectionProps = {
   tiers: MembershipTier[];
 };
 
+const tierConfig = {
+  bronze: {
+    gradient: "from-amber-700/40 via-amber-900/20 to-transparent",
+    border: "border-amber-600/40 hover:border-amber-500/60",
+    glow: "rgba(180, 83, 9, 0.3)",
+    icon: Medal,
+    iconColor: "text-amber-400",
+    badge: "bg-amber-900/50 text-amber-300 border-amber-600/30",
+    accent: "bg-amber-500",
+  },
+  silver: {
+    gradient: "from-slate-400/30 via-slate-500/15 to-transparent",
+    border: "border-slate-400/40 hover:border-slate-300/60",
+    glow: "rgba(148, 163, 184, 0.3)",
+    icon: Trophy,
+    iconColor: "text-slate-300",
+    badge: "bg-slate-700/50 text-slate-200 border-slate-500/30",
+    accent: "bg-slate-400",
+  },
+  gold: {
+    gradient: "from-yellow-500/40 via-amber-500/20 to-transparent",
+    border: "border-yellow-500/50 hover:border-yellow-400/70",
+    glow: "rgba(234, 179, 8, 0.4)",
+    icon: Crown,
+    iconColor: "text-yellow-400",
+    badge: "bg-yellow-900/50 text-yellow-300 border-yellow-500/30",
+    accent: "bg-yellow-500",
+  },
+};
+
 export function MembershipTiersSection({
   eyebrow = "Membership",
   title,
   description,
   tiers,
 }: MembershipSectionProps) {
-  const tierVariants = [
-    "border-white/15 bg-gradient-to-br from-[rgba(224,50,58,0.18)] via-white/5 to-transparent",
-    "border-white/15 bg-gradient-to-br from-[rgba(106,94,251,0.2)] via-white/5 to-transparent",
-    "border-white/10 bg-gradient-to-br from-white/12 via-white/5 to-transparent",
-  ];
   return (
     <SectionShell
       id="membership"
       eyebrow={eyebrow}
       title={title}
       description={description}
+      centered
     >
-      <div className="grid gap-6 md:grid-cols-3">
+      <StaggerContainer className="grid gap-8 md:grid-cols-3 lg:gap-10">
         {tiers.map((tier, index) => {
-          const isFeatured = tier.featured;
+          const color = tier.color || (["bronze", "silver", "gold"][index] as "bronze" | "silver" | "gold");
+          const config = tierConfig[color];
+          const Icon = config.icon;
+          const isGold = color === "gold";
+
           return (
-            <article
-              key={tier.name}
-              className={cn(
-                "relative flex flex-col gap-6 overflow-hidden rounded-3xl border p-6 shadow-[0_25px_55px_rgba(2,4,12,0.45)] transition-transform",
-                isFeatured
-                  ? "border-white/30 bg-gradient-to-br from-[rgba(224,50,58,0.35)] via-[rgba(106,94,251,0.25)] to-transparent md:-translate-y-2"
-                  : tierVariants[index % tierVariants.length],
-              )}
-            >
-              <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.18),_transparent_60%)] opacity-70" />
-              <div className="relative flex items-center justify-between">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-white/60">
-                    Tier 0{index + 1}
-                  </p>
-                  <h3 className="font-heading mt-1 text-xl font-semibold text-white">
-                    {tier.name}
-                  </h3>
-                </div>
-                {isFeatured ? (
-                  <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white">
-                    Featured
-                  </span>
-                ) : (
-                  <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/70">
-                    Access
-                  </span>
+            <StaggerItem key={tier.name}>
+              <article
+                className={cn(
+                  "group relative flex h-full flex-col overflow-hidden rounded-3xl border-2 p-8 transition-all duration-500 md:p-10",
+                  `bg-gradient-to-br ${config.gradient}`,
+                  config.border,
+                  isGold
+                    ? "md:-translate-y-6 md:scale-105 md:hover:-translate-y-8"
+                    : "hover:-translate-y-3",
                 )}
-              </div>
-              <ul className="relative space-y-3 text-sm leading-relaxed text-white/80 font-serif">
-                {tier.perks.map((perk) => (
-                  <li
-                    key={perk}
-                    className="flex items-start gap-2 text-left leading-6"
-                  >
-                    <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-white/70" />
-                    <span>{perk}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button variant={isFeatured ? "primary" : "secondary"}>
-                {tier.ctaLabel}
-              </Button>
-            </article>
+                style={{
+                  boxShadow: `0 25px 60px ${config.glow}, 0 10px 30px rgba(0,0,0,0.4)`,
+                }}
+              >
+                {/* Decorative corner glow */}
+                <div
+                  className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+                  style={{
+                    background: `radial-gradient(circle, ${config.glow}, transparent 70%)`,
+                    opacity: isGold ? 0.8 : 0.5,
+                  }}
+                />
+
+                {/* Top decoration line */}
+                <div className={cn("absolute left-0 right-0 top-0 h-1", config.accent)} />
+
+                {/* Header */}
+                <div className="relative mb-6 flex items-start justify-between">
+                  <div className="flex items-center gap-4">
+                    <div
+                      className={cn(
+                        "flex h-16 w-16 items-center justify-center rounded-2xl border transition-transform duration-300 group-hover:scale-110 md:h-20 md:w-20",
+                        config.badge,
+                      )}
+                    >
+                      <Icon className={cn("h-8 w-8 md:h-10 md:w-10", config.iconColor)} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium uppercase tracking-[0.25em] text-white/50">
+                        Tier {index + 1}
+                      </p>
+                      <h3 className="font-heading text-2xl font-bold text-white md:text-3xl lg:text-4xl">
+                        {tier.name}
+                      </h3>
+                    </div>
+                  </div>
+                  {isGold && (
+                    <span className="absolute -right-1 -top-1 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-black shadow-lg">
+                      Best Value
+                    </span>
+                  )}
+                </div>
+
+                {/* Price if available */}
+                {tier.price && (
+                  <div className="relative mb-6 border-b border-white/10 pb-6">
+                    <p className="font-heading text-4xl font-bold text-white md:text-5xl">
+                      {tier.price}
+                    </p>
+                  </div>
+                )}
+
+                {/* Perks */}
+                <ul className="font-serif relative mb-8 flex-1 space-y-4">
+                  {tier.perks.map((perk) => (
+                    <li key={perk} className="flex items-start gap-3 text-left">
+                      <span
+                        className={cn(
+                          "mt-1.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs",
+                          config.badge,
+                        )}
+                      >
+                        ✓
+                      </span>
+                      <span className="text-base leading-relaxed text-white/85 md:text-lg">
+                        {perk}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <Button
+                  variant={isGold ? "primary" : "secondary"}
+                  className={cn(
+                    "w-full px-8 py-5 text-base font-bold md:text-lg",
+                    isGold && "shadow-[0_10px_30px_rgba(234,179,8,0.3)]",
+                  )}
+                >
+                  {tier.ctaLabel}
+                </Button>
+              </article>
+            </StaggerItem>
           );
         })}
-      </div>
+      </StaggerContainer>
     </SectionShell>
   );
 }

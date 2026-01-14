@@ -159,68 +159,150 @@ export function LandingEditor({ content, onChange }: LandingEditorProps) {
         )}
       </SectionCard>
 
-      <SectionCard
-        title="How it Works"
-        description="서비스 사용 흐름을 단계별로 소개합니다."
-      >
-        <TextField
-          label="Section Title"
-          value={content.howItWorks.title}
-          placeholder="섹션 제목"
-          onChange={(value) =>
-            onChange({
-              ...content,
-              howItWorks: { ...content.howItWorks, title: value },
-            })
-          }
-        />
-        <TextArea
-          label="Section Description"
-          value={content.howItWorks.description}
-          placeholder="섹션 설명"
-          onChange={(value) =>
-            onChange({
-              ...content,
-              howItWorks: { ...content.howItWorks, description: value },
-            })
-          }
-        />
-        <div className="grid gap-4 md:grid-cols-3">
-          {content.howItWorks.steps.map((step, index) => (
-            <div
-              key={step.name + index}
-              className="rounded-2xl border border-white/10 p-4"
-            >
-              <TextField
-                label="Step Title"
-                value={step.name}
-                placeholder="단계 제목"
-                onChange={(value) => {
-                  const steps = [...content.howItWorks.steps];
-                  steps[index] = { ...steps[index], name: value };
-                  onChange({
-                    ...content,
-                    howItWorks: { ...content.howItWorks, steps },
-                  });
-                }}
-              />
-              <TextArea
-                label="Step Description"
-                value={step.description}
-                placeholder="단계 설명"
-                onChange={(value) => {
-                  const steps = [...content.howItWorks.steps];
-                  steps[index] = { ...steps[index], description: value };
-                  onChange({
-                    ...content,
-                    howItWorks: { ...content.howItWorks, steps },
-                  });
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </SectionCard>
+      {/* Partnership 섹션 - 기존 DB에 없을 수 있어서 조건부 렌더링 */}
+      {content.partnership && (
+        <SectionCard
+          title="Partnership"
+          description="파트너사 로고 배너 영역입니다."
+        >
+          <TextField
+            label="Section Title"
+            value={content.partnership.title}
+            placeholder="섹션 제목"
+            onChange={(value) =>
+              onChange({
+                ...content,
+                partnership: { ...content.partnership!, title: value },
+              })
+            }
+          />
+          <TextArea
+            label="Section Description"
+            value={content.partnership.description}
+            placeholder="섹션 설명"
+            onChange={(value) =>
+              onChange({
+                ...content,
+                partnership: { ...content.partnership!, description: value },
+              })
+            }
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            {content.partnership.partners.map((partner, index) => (
+              <div
+                key={partner.name + index}
+                className="rounded-2xl border border-white/10 p-4"
+              >
+                <TextField
+                  label="Partner Name"
+                  value={partner.name}
+                  placeholder="파트너 이름"
+                  onChange={(value) => {
+                    const partners = [...content.partnership!.partners];
+                    partners[index] = { ...partners[index], name: value };
+                    onChange({
+                      ...content,
+                      partnership: { ...content.partnership!, partners },
+                    });
+                  }}
+                />
+                <TextField
+                  label="Logo URL"
+                  value={partner.logo}
+                  placeholder="/partners/logo.svg"
+                  onChange={(value) => {
+                    const partners = [...content.partnership!.partners];
+                    partners[index] = { ...partners[index], logo: value };
+                    onChange({
+                      ...content,
+                      partnership: { ...content.partnership!, partners },
+                    });
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+      )}
+
+      {/* Press 섹션 - 기존 DB에 없을 수 있어서 조건부 렌더링 */}
+      {content.press && (
+        <SectionCard
+          title="Press / Media"
+          description="언론 보도 기사 영역입니다."
+        >
+          <TextField
+            label="Section Title"
+            value={content.press.title}
+            placeholder="섹션 제목"
+            onChange={(value) =>
+              onChange({
+                ...content,
+                press: { ...content.press!, title: value },
+              })
+            }
+          />
+          <TextArea
+            label="Section Description"
+            value={content.press.description}
+            placeholder="섹션 설명"
+            onChange={(value) =>
+              onChange({
+                ...content,
+                press: { ...content.press!, description: value },
+              })
+            }
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            {content.press.items.map((item, index) => (
+              <div
+                key={item.title + index}
+                className="rounded-2xl border border-white/10 p-4"
+              >
+                <TextField
+                  label="Source Name"
+                  value={item.source}
+                  placeholder="CoinDesk"
+                  onChange={(value) => {
+                    const items = [...content.press!.items];
+                    items[index] = { ...items[index], source: value };
+                    onChange({
+                      ...content,
+                      press: { ...content.press!, items },
+                    });
+                  }}
+                />
+                <TextField
+                  label="Article Title"
+                  value={item.title}
+                  placeholder="기사 제목"
+                  onChange={(value) => {
+                    const items = [...content.press!.items];
+                    items[index] = { ...items[index], title: value };
+                    onChange({
+                      ...content,
+                      press: { ...content.press!, items },
+                    });
+                  }}
+                />
+                <TextField
+                  label="Article URL"
+                  value={item.href}
+                  placeholder="https://"
+                  onChange={(value) => {
+                    const items = [...content.press!.items];
+                    items[index] = { ...items[index], href: value };
+                    onChange({
+                      ...content,
+                      press: { ...content.press!, items },
+                    });
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+      )}
 
       <SectionCard
         title="Membership Tiers"
@@ -267,7 +349,7 @@ export function LandingEditor({ content, onChange }: LandingEditorProps) {
       </SectionCard>
 
       <SectionCard
-        title="Token Snapshot"
+        title="Token Allocation"
         description="토큰/컨트랙트 정보를 표시합니다."
       >
         <TextField

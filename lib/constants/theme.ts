@@ -16,20 +16,51 @@ export const fonts = {
 };
 
 export const buttonStyles = {
-  primary:
-    "bg-gradient-to-r from-[--rh-primary] via-[#ff5464] to-[--rh-secondary] text-white shadow-[0_18px_45px_rgba(224,50,58,0.35)] hover:opacity-95 focus-visible:outline-[--rh-primary] active:opacity-90",
-  secondary:
-    "bg-[--rh-surface-muted] text-white border border-white/10 hover:border-white/30 hover:bg-[--rh-surface] focus-visible:outline-[--rh-secondary] shadow-[0_12px_35px_rgba(12,11,26,0.6)]",
-  ghost:
-    "border border-white/15 text-white/90 hover:border-white/40 hover:bg-white/5 active:bg-white/10",
-  subtle:
-    "bg-white/5 text-white hover:bg-white/10 active:bg-white/15 border border-transparent",
+  primary: [
+    "bg-[--rh-primary] text-white font-semibold",
+    "shadow-[0_4px_20px_rgba(224,50,58,0.5)]",
+    "hover:bg-[#c42a31] hover:shadow-[0_6px_28px_rgba(224,50,58,0.6)]",
+    "active:scale-95",
+  ].join(" "),
+
+  secondary: [
+    "bg-white/10 text-white font-semibold",
+    "border border-white/20 backdrop-blur-sm",
+    "hover:bg-white/15 hover:border-white/40",
+    "shadow-[0_4px_20px_rgba(0,0,0,0.25)]",
+  ].join(" "),
+
+  ghost: [
+    "border border-white/20 text-white font-medium",
+    "hover:border-white/40 hover:bg-white/10",
+    "active:bg-white/15",
+  ].join(" "),
+
+  subtle: [
+    "bg-white/5 text-white/90",
+    "hover:bg-white/10 hover:text-white",
+    "active:bg-white/15",
+  ].join(" "),
 };
 
 export const layoutTokens = {
   sectionGap: {
-    base: "py-16",
-    md: "md:py-24",
+    base: "py-20",
+    md: "md:py-32",
+    lg: "lg:py-40",
   },
-  container: "mx-auto w-full max-w-6xl px-6 md:px-10 lg:px-12",
+  container: "mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-16",
+};
+
+export const typography = {
+  // Hero headlines
+  heroTitle: "text-5xl md:text-6xl lg:text-7xl",
+  // Section titles
+  sectionTitle: "text-4xl md:text-5xl lg:text-6xl",
+  // Card titles
+  cardTitle: "text-xl md:text-2xl",
+  // Body text
+  body: "text-base md:text-lg lg:text-xl",
+  // Small text
+  small: "text-sm md:text-base",
 };
