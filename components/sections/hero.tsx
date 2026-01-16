@@ -2,7 +2,7 @@
 
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
-import { FadeUp, ScaleUp, StaggerContainer, StaggerItem } from "@/components/ui/motion";
+import { FadeUp, ScaleUp } from "@/components/ui/motion";
 import Image from "next/image";
 
 type HeroProps = {
@@ -46,7 +46,7 @@ export function Hero({ title, subtitle, ctas }: HeroProps) {
                   className={
                     index === 0
                       ? "btn-glow px-10 py-5 text-base sm:min-w-[220px] md:text-lg"
-                      : "px-10 py-5 text-base sm:min-w-[220px] md:text-lg"
+                      : "px-10 py-5 text-base sm:min-w-[220px] md:text-lg bg-gradient-to-r from-[#6a5efb] to-[#4c44d7] border-0 text-white font-semibold shadow-[0_4px_20px_rgba(106,94,251,0.5)] hover:shadow-[0_6px_28px_rgba(106,94,251,0.6)] hover:from-[#7a6ffb] hover:to-[#5c54e7]"
                   }
                 >
                   {cta.label}
@@ -54,24 +54,6 @@ export function Hero({ title, subtitle, ctas }: HeroProps) {
               ))}
             </div>
           </FadeUp>
-          <StaggerContainer className="mt-6 grid gap-5 sm:grid-cols-3" delay={0.3}>
-            {[
-              { label: "UI-first system", value: "Layout locked" },
-              { label: "Docs rail", value: "Sidebar + search" },
-              { label: "Responsive", value: "Desktop → Mobile" },
-            ].map((stat) => (
-              <StaggerItem key={stat.label}>
-                <div className="group rounded-2xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur transition-all duration-300 hover:border-white/20 hover:bg-white/10 md:px-6 md:py-5">
-                  <p className="text-xs uppercase tracking-[0.35em] text-white/45 md:text-sm">
-                    {stat.label}
-                  </p>
-                  <p className="font-heading mt-2 text-lg font-semibold text-white md:text-xl">
-                    {stat.value}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
         </div>
         <ScaleUp delay={0.15}>
           <div className="relative flex w-full items-center justify-center">

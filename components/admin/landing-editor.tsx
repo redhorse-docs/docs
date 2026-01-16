@@ -155,6 +155,52 @@ export function LandingEditor({ content, onChange }: LandingEditorProps) {
                 })
               }
             />
+            <div className="mt-4 space-y-4 rounded-xl border border-white/10 bg-white/5 p-4">
+              <p className="text-sm font-medium text-white/80">CTA 버튼</p>
+              <TextField
+                label="Button Label"
+                value={content.whatIs.banner.cta?.label || ""}
+                placeholder="Get Started"
+                onChange={(value) =>
+                  onChange({
+                    ...content,
+                    whatIs: {
+                      ...content.whatIs,
+                      banner: {
+                        ...content.whatIs.banner!,
+                        cta: {
+                          ...content.whatIs.banner!.cta,
+                          label: value,
+                          href: content.whatIs.banner!.cta?.href || "/app",
+                        },
+                      },
+                    },
+                  })
+                }
+              />
+              <TextField
+                label="Button Link"
+                value={content.whatIs.banner.cta?.href || ""}
+                placeholder="/app"
+                onChange={(value) =>
+                  onChange({
+                    ...content,
+                    whatIs: {
+                      ...content.whatIs,
+                      banner: {
+                        ...content.whatIs.banner!,
+                        cta: {
+                          ...content.whatIs.banner!.cta,
+                          label:
+                            content.whatIs.banner!.cta?.label || "Get Started",
+                          href: value,
+                        },
+                      },
+                    },
+                  })
+                }
+              />
+            </div>
           </div>
         )}
       </SectionCard>
@@ -273,6 +319,22 @@ export function LandingEditor({ content, onChange }: LandingEditorProps) {
                   }}
                 />
                 <TextField
+                  label="Logo URL"
+                  value={item.logo ?? ""}
+                  placeholder="/press/logo.svg"
+                  onChange={(value) => {
+                    const items = [...content.press!.items];
+                    items[index] = {
+                      ...items[index],
+                      logo: value ? value : undefined,
+                    };
+                    onChange({
+                      ...content,
+                      press: { ...content.press!, items },
+                    });
+                  }}
+                />
+                <TextField
                   label="Article Title"
                   value={item.title}
                   placeholder="기사 제목"
@@ -292,6 +354,22 @@ export function LandingEditor({ content, onChange }: LandingEditorProps) {
                   onChange={(value) => {
                     const items = [...content.press!.items];
                     items[index] = { ...items[index], href: value };
+                    onChange({
+                      ...content,
+                      press: { ...content.press!, items },
+                    });
+                  }}
+                />
+                <TextField
+                  label="Publish Date"
+                  value={item.date ?? ""}
+                  placeholder="2025"
+                  onChange={(value) => {
+                    const items = [...content.press!.items];
+                    items[index] = {
+                      ...items[index],
+                      date: value ? value : undefined,
+                    };
                     onChange({
                       ...content,
                       press: { ...content.press!, items },
@@ -462,10 +540,7 @@ export function LandingEditor({ content, onChange }: LandingEditorProps) {
         </div>
       </SectionCard>
 
-      <SectionCard
-        title="Roadmap"
-        description="로드맵 타임라인 영역입니다."
-      >
+      <SectionCard title="Roadmap" description="로드맵 타임라인 영역입니다.">
         <TextField
           label="Section Title"
           value={content.roadmap.title}
@@ -692,7 +767,13 @@ type FieldProps = {
   placeholder?: string;
 };
 
-function TextField({ label, value, onChange, placeholder, helperText }: FieldProps) {
+function TextField({
+  label,
+  value,
+  onChange,
+  placeholder,
+  helperText,
+}: FieldProps) {
   return (
     <label className="flex flex-col gap-2 text-sm">
       <span className="text-xs uppercase tracking-[0.3em] text-white/50">
@@ -709,7 +790,13 @@ function TextField({ label, value, onChange, placeholder, helperText }: FieldPro
   );
 }
 
-function TextArea({ label, value, onChange, placeholder, helperText }: FieldProps) {
+function TextArea({
+  label,
+  value,
+  onChange,
+  placeholder,
+  helperText,
+}: FieldProps) {
   return (
     <label className="flex flex-col gap-2 text-sm">
       <span className="text-xs uppercase tracking-[0.3em] text-white/50">
@@ -770,7 +857,10 @@ function TierEditor({ tier, onChange }: TierEditorProps) {
         onChange={(value) =>
           onChange({
             ...tier,
-            perks: value.split("\n").map((perk) => perk.trim()).filter(Boolean),
+            perks: value
+              .split("\n")
+              .map((perk) => perk.trim())
+              .filter(Boolean),
           })
         }
       />

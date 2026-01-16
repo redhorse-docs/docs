@@ -45,7 +45,7 @@ function MarqueeBanner({
             href={partner.href || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-20 w-40 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-6 py-4 transition-all duration-300 hover:border-white/25 hover:bg-white/10 md:h-24 md:w-52"
+            className="group flex h-24 w-48 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-7 py-4 transition-all duration-300 hover:border-white/25 hover:bg-white/10 md:h-28 md:w-60 lg:h-32 lg:w-72"
           >
             {partner.logo ? (
               <Image
@@ -53,7 +53,7 @@ function MarqueeBanner({
                 alt={partner.name}
                 width={160}
                 height={60}
-                className="h-auto max-h-12 w-auto max-w-full object-contain opacity-70 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0 md:max-h-14"
+                className="h-auto max-h-14 w-auto max-w-full object-contain opacity-70 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0 md:max-h-16 lg:max-h-18"
               />
             ) : (
               <span className="font-heading text-lg font-semibold text-white/60 transition-colors duration-300 group-hover:text-white md:text-xl">
@@ -81,7 +81,7 @@ function MarqueeBanner({
             href={partner.href || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex h-20 w-40 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-6 py-4 transition-all duration-300 hover:border-white/25 hover:bg-white/10 md:h-24 md:w-52"
+            className="group flex h-24 w-48 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-7 py-4 transition-all duration-300 hover:border-white/25 hover:bg-white/10 md:h-28 md:w-60 lg:h-32 lg:w-72"
           >
             {partner.logo ? (
               <Image
@@ -89,7 +89,7 @@ function MarqueeBanner({
                 alt={partner.name}
                 width={160}
                 height={60}
-                className="h-auto max-h-12 w-auto max-w-full object-contain opacity-70 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0 md:max-h-14"
+                className="h-auto max-h-14 w-auto max-w-full object-contain opacity-70 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0 md:max-h-16 lg:max-h-18"
               />
             ) : (
               <span className="font-heading text-lg font-semibold text-white/60 transition-colors duration-300 group-hover:text-white md:text-xl">
@@ -108,10 +108,6 @@ export function PartnershipSection({
   description,
   partners,
 }: PartnershipSectionProps) {
-  // Split partners for two rows
-  const firstRow = partners.slice(0, Math.ceil(partners.length / 2));
-  const secondRow = partners.slice(Math.ceil(partners.length / 2));
-
   return (
     <section
       id="partnership"
@@ -141,10 +137,7 @@ export function PartnershipSection({
 
       {/* Full-width marquee */}
       <div className="relative">
-        <MarqueeBanner partners={firstRow} direction="left" speed={35} />
-        {secondRow.length > 0 && (
-          <MarqueeBanner partners={secondRow} direction="right" speed={40} />
-        )}
+        <MarqueeBanner partners={partners} direction="left" speed={35} />
       </div>
     </section>
   );

@@ -6,7 +6,10 @@ import { SectionShell } from "@/components/ui/section-shell";
 import type { CommunityChannel, IconName } from "@/lib/types/landing";
 import type { LucideIcon } from "lucide-react";
 import {
+  Coins,
+  Crown,
   Layers,
+  Lock,
   Orbit,
   ShieldCheck,
   Sparkles,
@@ -22,6 +25,9 @@ const iconMap: Record<IconName, LucideIcon> = {
   shield: ShieldCheck,
   wave: Waves,
   bolt: Zap,
+  crown: Crown,
+  lock: Lock,
+  coin: Coins,
 };
 
 const customIcons: Record<string, string> = {
@@ -68,7 +74,10 @@ export function CommunitySection({
                           className="h-10 w-10 object-contain md:h-12 md:w-12"
                         />
                       ) : (
-                        <Icon className="h-10 w-10 text-white md:h-12 md:w-12" strokeWidth={1.6} />
+                        <Icon
+                          className="h-10 w-10 text-white md:h-12 md:w-12"
+                          strokeWidth={1.6}
+                        />
                       )}
                     </div>
                     <div>

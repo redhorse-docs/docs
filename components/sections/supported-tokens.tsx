@@ -141,8 +141,8 @@ export function SupportedTokensSection() {
         </FadeUp>
       </Container>
 
-      <TokenMarquee direction="left" speed={50} />
-      <TokenMarquee direction="right" speed={60} />
+      {/* <TokenMarquee direction="left" speed={50} /> */}
+      {/* <TokenMarquee direction="right" speed={60} /> */}
     </section>
   );
 }

@@ -1,4 +1,13 @@
-export type IconName = "spark" | "orbit" | "stack" | "shield" | "wave" | "bolt";
+export type IconName =
+  | "spark"
+  | "orbit"
+  | "stack"
+  | "shield"
+  | "wave"
+  | "bolt"
+  | "crown"
+  | "lock"
+  | "coin";
 
 export type HeroContent = {
   title: string;
@@ -95,6 +104,10 @@ export type LandingContent = {
     banner?: {
       title: string;
       description: string;
+      cta?: {
+        label: string;
+        href: string;
+      };
     };
   };
   // 기존 DB 호환성을 위해 optional

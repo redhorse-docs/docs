@@ -4,7 +4,7 @@ import type { MembershipTier } from "@/lib/types/landing";
 import { SectionShell } from "@/components/ui/section-shell";
 import { Button } from "@/components/ui/button";
 import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
-import { Crown, Medal, Trophy } from "lucide-react";
+import { Coins, Crown, Shield } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 
 type MembershipSectionProps = {
@@ -19,7 +19,7 @@ const tierConfig = {
     gradient: "from-amber-700/40 via-amber-900/20 to-transparent",
     border: "border-amber-600/40 hover:border-amber-500/60",
     glow: "rgba(180, 83, 9, 0.3)",
-    icon: Medal,
+    icon: Coins,
     iconColor: "text-amber-400",
     badge: "bg-amber-900/50 text-amber-300 border-amber-600/30",
     accent: "bg-amber-500",
@@ -28,7 +28,7 @@ const tierConfig = {
     gradient: "from-slate-400/30 via-slate-500/15 to-transparent",
     border: "border-slate-400/40 hover:border-slate-300/60",
     glow: "rgba(148, 163, 184, 0.3)",
-    icon: Trophy,
+    icon: Shield,
     iconColor: "text-slate-300",
     badge: "bg-slate-700/50 text-slate-200 border-slate-500/30",
     accent: "bg-slate-400",
@@ -72,9 +72,7 @@ export function MembershipTiersSection({
                   "group relative flex h-full flex-col overflow-hidden rounded-3xl border-2 p-8 transition-all duration-500 md:p-10",
                   `bg-gradient-to-br ${config.gradient}`,
                   config.border,
-                  isGold
-                    ? "md:-translate-y-6 md:scale-105 md:hover:-translate-y-8"
-                    : "hover:-translate-y-3",
+                  "hover:-translate-y-3",
                 )}
                 style={{
                   boxShadow: `0 25px 60px ${config.glow}, 0 10px 30px rgba(0,0,0,0.4)`,
@@ -113,9 +111,7 @@ export function MembershipTiersSection({
                     </div>
                   </div>
                   {isGold && (
-                    <span className="absolute -right-1 -top-1 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-black shadow-lg">
-                      Best Value
-                    </span>
+                    <span className="sr-only">Best Value</span>
                   )}
                 </div>
 
@@ -162,6 +158,13 @@ export function MembershipTiersSection({
           );
         })}
       </StaggerContainer>
+
+      <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 px-6 py-5 text-center shadow-[0_20px_45px_rgba(2,4,12,0.35)] backdrop-blur md:px-10 md:py-6">
+        <p className="font-serif text-base text-white/75 md:text-lg">
+          Parameters, tier thresholds, and reward budgets are published and may
+          be updated under governance scope.
+        </p>
+      </div>
     </SectionShell>
   );
 }

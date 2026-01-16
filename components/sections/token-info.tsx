@@ -1,11 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/motion";
+import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
 import { PlaceholderIcon } from "@/components/ui/placeholder-icon";
 import { SectionShell } from "@/components/ui/section-shell";
+import { TokenAllocationChart } from "@/components/ui/token-allocation-chart";
 import type { TokenAllocationSnapshot } from "@/lib/types/landing";
-import { cn } from "@/lib/utils/cn";
 import Image from "next/image";
 
 type TokenInfoProps = TokenAllocationSnapshot;
@@ -59,84 +59,79 @@ export function TokenInfoSection({
           style={{ animationDelay: "2.8s" }}
         />
       </div>
-      <StaggerContainer className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
+      <StaggerContainer className="grid gap-8">
         <StaggerItem>
-          <article className="h-full rounded-3xl border border-white/20 bg-gradient-to-br from-[rgba(224,50,58,0.28)] via-white/5 to-transparent p-8 shadow-[0_30px_65px_rgba(2,4,12,0.45)] transition-all duration-300 hover:border-[--rh-primary]/50 md:p-10">
-            <div className="flex items-center gap-4">
-              <PlaceholderIcon name="stack" className="h-12 w-12 md:h-14 md:w-14" />
-              <p className="text-sm uppercase tracking-[0.3em] text-white/40 md:text-base">
+          <article className="flex h-full flex-col rounded-3xl border border-white/20 bg-gradient-to-br from-[rgba(224,50,58,0.28)] via-white/5 to-transparent p-8 shadow-[0_30px_65px_rgba(2,4,12,0.45)] transition-all duration-300 hover:border-[--rh-primary]/50 md:p-10">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <PlaceholderIcon
+                name="stack"
+                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14"
+              />
+              <p className="text-[0.65rem] uppercase tracking-[0.3em] text-white/40 sm:text-sm md:text-base">
                 {contract.label}
               </p>
             </div>
-            <p className="mt-6 break-all font-mono text-lg text-white md:text-xl">{contract.address}</p>
-            <p className="font-serif mt-3 text-base text-white/65 md:text-lg">
+            <p
+              className="mt-4 truncate font-mono text-sm text-white sm:mt-6 sm:text-lg md:text-xl"
+              title={contract.address}
+            >
+              {contract.address}
+            </p>
+            <p
+              className="font-serif mt-2 truncate text-xs leading-relaxed text-white/65 sm:mt-3 sm:text-base md:text-lg"
+              title={contract.helper}
+            >
               {contract.helper}
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button variant="ghost" className="px-6 py-3 text-base">
-                Copy
+            <div className="mt-auto flex flex-wrap gap-2 pt-6 sm:gap-3 sm:pt-8">
+              <Button
+                variant="subtle"
+                className="px-4 py-2.5 text-xs sm:px-6 sm:py-3 sm:text-base"
+                href="#"
+              >
+                View Explorer
               </Button>
-              {links.map((link) => (
-                <Button
-                  key={link.label}
-                  variant="subtle"
-                  className="px-6 py-3 text-base"
-                  href={link.href}
-                >
-                  {link.label}
-                </Button>
-              ))}
             </div>
           </article>
         </StaggerItem>
         <StaggerItem>
-          <article className="h-full rounded-3xl border border-white/15 bg-gradient-to-br from-[rgba(106,94,251,0.2)] via-white/5 to-transparent p-8 shadow-[0_30px_65px_rgba(2,4,12,0.35)] transition-all duration-300 hover:border-[--rh-secondary]/50 md:p-10">
-            <h3 className="font-heading text-xl font-semibold text-white md:text-2xl">
-              Metrics
-            </h3>
-            <div className="mt-6 grid gap-5 sm:grid-cols-2">
-              {metrics.map((metric) => (
-                <div
-                  key={metric.label}
-                  className="group rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur transition-all duration-300 hover:border-white/30 hover:bg-white/15 md:p-6"
-                >
-                  <p className="text-sm uppercase tracking-[0.3em] text-white/50">
-                    {metric.label}
-                  </p>
-                  <p className="font-heading mt-3 text-2xl font-bold text-white md:text-3xl">
-                    {metric.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </article>
+          <TokenAllocationChart
+            totalSupply="10,000,000,000 RH"
+            allocations={[
+              {
+                percentage: 25,
+                label: "Community & Rewards",
+                description: "Epochs, campaigns, and member programs",
+                color: "#e0323a", // --rh-primary
+              },
+              {
+                percentage: 20,
+                label: "Liquidity & Market Support",
+                description: "Liquidity provisioning and market operations",
+                color: "#6a5efb", // --rh-secondary
+              },
+              {
+                percentage: 20,
+                label: "Treasury",
+                description: "Operations, reserves, sustainability",
+                color: "#8b8b9f", // 회색 계열
+              },
+              {
+                percentage: 20,
+                label: "Team & Contributors",
+                description: "Long-term alignment",
+                color: "#c92a2f", // 더 어두운 빨강
+              },
+              {
+                percentage: 15,
+                label: "Ecosystem",
+                description: "Strategic initiatives and collaborations",
+                color: "#4c44d7", // 더 어두운 보라
+              },
+            ]}
+          />
         </StaggerItem>
       </StaggerContainer>
-      <FadeUp delay={0.2}>
-        <div className="mt-10 rounded-3xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-8 shadow-[0_30px_65px_rgba(2,4,12,0.35)] md:p-10">
-          <h3 className="font-heading text-xl font-semibold text-white md:text-2xl">
-            Allocation
-          </h3>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 md:grid-cols-4">
-            {allocation.map((chunk, index) => (
-              <div
-                key={chunk.label}
-                className={cn(
-                  "rounded-2xl border p-5 transition-all duration-300 hover:-translate-y-1 md:p-6",
-                  allocationVariants[index % allocationVariants.length],
-                )}
-              >
-                <p className="text-sm uppercase tracking-[0.3em] text-white/50">
-                  {chunk.label}
-                </p>
-                <p className="font-heading mt-3 text-2xl font-bold text-white md:text-3xl">
-                  {chunk.value}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </FadeUp>
     </SectionShell>
   );
 }

@@ -2,10 +2,10 @@
 
 import type { PressItem } from "@/lib/types/landing";
 import { SectionShell } from "@/components/ui/section-shell";
-import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
-import { ExternalLink, Newspaper } from "lucide-react";
+import { StaggerItem, motion } from "@/components/ui/motion";
+import { ChevronLeft, ChevronRight, ExternalLink, Newspaper } from "lucide-react";
 import Image from "next/image";
-import { cn } from "@/lib/utils/cn";
+import { useRef } from "react";
 
 type PressSectionProps = {
   title: string;
@@ -18,6 +18,22 @@ export function PressSection({
   description,
   items,
 }: PressSectionProps) {
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollByCard = (direction: "left" | "right") => {
+    const container = scrollerRef.current;
+    if (!container) return;
+
+    const card = container.querySelector<HTMLElement>("[data-press-card]");
+    const gap = 24;
+    const amount = card ? card.offsetWidth + gap : container.clientWidth * 0.8;
+
+    container.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <SectionShell
       id="press"
@@ -26,14 +42,50 @@ export function PressSection({
       description={description}
       centered
     >
-      <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8">
+      <div className="flex items-center justify-end gap-2 pb-4">
+        <button
+          type="button"
+          onClick={() => scrollByCard("left")}
+          aria-label="Scroll press items left"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          onClick={() => scrollByCard("right")}
+          aria-label="Scroll press items right"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+
+      <motion.div
+        ref={scrollerRef}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.1,
+              delayChildren: 0.1,
+            },
+          },
+        }}
+        className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-4"
+      >
         {items.map((item, index) => (
           <StaggerItem key={`${item.source}-${index}`}>
             <a
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent transition-all duration-300 hover:-translate-y-2 hover:border-white/25 hover:shadow-[0_30px_60px_rgba(2,4,12,0.5)]"
+              data-press-card
+              className="group relative flex h-full w-[260px] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent transition-all duration-300 hover:border-white/25 hover:shadow-[0_30px_60px_rgba(2,4,12,0.5)] sm:w-[320px] lg:w-[360px]"
             >
               {/* Top section with logo */}
               <div className="relative flex h-32 items-center justify-center border-b border-white/10 bg-white/5 p-6 md:h-40">
@@ -91,7 +143,7 @@ export function PressSection({
             </a>
           </StaggerItem>
         ))}
-      </StaggerContainer>
+      </motion.div>
     </SectionShell>
   );
 }

@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
 import type { IconName } from "@/lib/types/landing";
 import { cn } from "@/lib/utils/cn";
+import type { ReactNode } from "react";
 
 const iconPaths: Record<IconName, ReactNode> = {
   spark: (
@@ -76,6 +76,54 @@ const iconPaths: Record<IconName, ReactNode> = {
       />
     </>
   ),
+  crown: (
+    <>
+      <path
+        d="M5 16h14M5 16l2-8 5 4 5-4 2 8M5 16v4h14v-4"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 12h6"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+    </>
+  ),
+  lock: (
+    <>
+      <rect
+        x="6"
+        y="10"
+        width="12"
+        height="8"
+        rx="2"
+        stroke="currentColor"
+        strokeWidth={1.5}
+      />
+      <path
+        d="M8 10V7a4 4 0 0 1 8 0v3"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+    </>
+  ),
+  coin: (
+    <>
+      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth={1.5} />
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth={1.5} />
+      <path
+        d="M12 4v4M12 16v4M4 12h4M16 12h4"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+    </>
+  ),
 };
 
 type PlaceholderIconProps = {
@@ -91,7 +139,7 @@ export function PlaceholderIcon({
     <span
       className={cn(
         "inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80",
-        className,
+        className
       )}
     >
       <svg

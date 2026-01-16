@@ -41,6 +41,10 @@ export const landingMock: LandingContent = {
       title: "Sed posuere consectetur est at lobortis",
       description:
         "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero a pharetra augue vehicula.",
+      cta: {
+        label: "Get Started",
+        href: "/app",
+      },
     },
   },
   partnership: {
@@ -48,14 +52,46 @@ export const landingMock: LandingContent = {
     description:
       "We collaborate with top-tier partners across the blockchain ecosystem to deliver exceptional value.",
     partners: [
-      { name: "Binance", logo: "/partners/binance.svg", href: "https://binance.com" },
-      { name: "Coinbase", logo: "/partners/coinbase.svg", href: "https://coinbase.com" },
-      { name: "Ethereum", logo: "/partners/ethereum.svg", href: "https://ethereum.org" },
-      { name: "Polygon", logo: "/partners/polygon.svg", href: "https://polygon.technology" },
-      { name: "Chainlink", logo: "/partners/chainlink.svg", href: "https://chain.link" },
-      { name: "OpenSea", logo: "/partners/opensea.svg", href: "https://opensea.io" },
-      { name: "Uniswap", logo: "/partners/uniswap.svg", href: "https://uniswap.org" },
-      { name: "Aave", logo: "/partners/aave.svg", href: "https://aave.com" },
+      {
+        name: "Binance",
+        logo: "/partners/binance.svg",
+        href: "https://binance.com",
+      },
+      {
+        name: "Coinbase",
+        logo: "/partners/coinbase.svg",
+        href: "https://coinbase.com",
+      },
+      {
+        name: "Ethereum",
+        logo: "/partners/ethereum.svg",
+        href: "https://ethereum.org",
+      },
+      {
+        name: "Polygon",
+        logo: "/partners/polygon.svg",
+        href: "https://polygon.technology",
+      },
+      {
+        name: "Chainlink",
+        logo: "/partners/chainlink.svg",
+        href: "https://chain.link",
+      },
+      {
+        name: "OpenSea",
+        logo: "/partners/opensea.svg",
+        href: "https://opensea.io",
+      },
+      {
+        name: "Uniswap",
+        logo: "/partners/uniswap.svg",
+        href: "https://uniswap.org",
+      },
+      {
+        name: "Upbit",
+        logo: "/partners/upbit.png",
+        href: "https://upbit.com",
+      },
     ],
   },
   press: {
@@ -66,7 +102,8 @@ export const landingMock: LandingContent = {
       {
         source: "CoinDesk",
         logo: "/press/coindesk.svg",
-        title: "RedHorse Protocol Announces Strategic Partnership with Major Exchange",
+        title:
+          "RedHorse Protocol Announces Strategic Partnership with Major Exchange",
         href: "#",
         date: "Jan 2025",
       },
@@ -101,7 +138,8 @@ export const landingMock: LandingContent = {
       {
         source: "Forbes Digital",
         logo: "/press/forbes.svg",
-        title: "Top 10 DeFi Projects to Watch in 2025 - RedHorse Leads the Pack",
+        title:
+          "Top 10 DeFi Projects to Watch in 2025 - RedHorse Leads the Pack",
         href: "#",
         date: "Aug 2024",
       },
@@ -163,8 +201,8 @@ export const landingMock: LandingContent = {
     metrics: [
       { label: "Total Supply", value: "120M RH" },
       { label: "Initial Float", value: "15.0%" },
-      { label: "Vesting", value: "18 month linear" },
-      { label: "Chain", value: "OP Mainnet" },
+      { label: "Vesting", value: "18m linear" },
+      { label: "Chain", value: "Mainnet" },
     ],
     allocation: [
       { label: "Community", value: "40%" },
@@ -173,8 +211,8 @@ export const landingMock: LandingContent = {
       { label: "Advisors", value: "15%" },
     ],
     links: [
-      { label: "View Explorer", href: "#" },
-      { label: "Audit PDF", href: "#" },
+      // { label: "View Explorer", href: "#" },
+      // { label: "Audit PDF", href: "#" },
     ],
   },
   security: {
@@ -186,14 +224,14 @@ export const landingMock: LandingContent = {
         title: "Audit Ready",
         description:
           "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.",
-        badge: "Placeholder",
+        // badge: "Placeholder",
         icon: "shield",
       },
       {
         title: "Multisig Treasury",
         description:
           "Sed posuere consectetur est at lobortis lorem ipsum dolor sit amet.",
-        badge: "5 of 9",
+        // badge: "5 of 9",
         icon: "orbit",
       },
       {

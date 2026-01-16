@@ -78,7 +78,7 @@ export function LandingRoot({ initialContent }: LandingRootProps) {
       <div className="relative z-10">
         <Hero {...content.hero} />
         <WhatIsSection {...content.whatIs} />
-        <SupportedTokensSection />
+        {/* <SupportedTokensSection /> */}
         <PartnershipSection {...partnership} />
         <PressSection {...press} />
         <MembershipTiersSection {...content.membership} />
