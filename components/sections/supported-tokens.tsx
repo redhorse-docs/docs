@@ -2,11 +2,15 @@
 
 import { Container } from "@/components/layout/container";
 import { FadeUp } from "@/components/ui/motion";
-import Image from "next/image";
 import { cn } from "@/lib/utils/cn";
+import Image from "next/image";
 
 const tokens = [
-  { name: "Solana", image: "/tokens/Solana_Camera1.png" },
+  {
+    name: "Solana",
+    image: "/tokens/Solana_Camera1.png",
+    imageClassName: "scale-110",
+  },
   { name: "Bitcoin", image: "/tokens/Bitcoin_Camera1.png" },
   { name: "Ethereum", image: "/tokens/Ethereum_Camera1.png" },
   { name: "USDC", image: "/tokens/USDCoin_Camera1.png" },
@@ -17,7 +21,11 @@ const tokens = [
   { name: "Dogecoin", image: "/tokens/Dogecoin_Camera1.png" },
   { name: "Polygon", image: "/tokens/Polygon_Camera1.png" },
   { name: "Polkadot", image: "/tokens/Polkadot_Camera1.png" },
-  { name: "Avalanche", image: "/tokens/Avalanche_Camera1.png" },
+  {
+    name: "Avalanche",
+    image: "/tokens/Avalanche_Camera1.png",
+    imageClassName: "scale-110",
+  },
 ];
 
 function TokenMarquee({
@@ -30,7 +38,7 @@ function TokenMarquee({
   const duplicatedTokens = [...tokens, ...tokens];
 
   return (
-    <div className="relative flex overflow-hidden py-4">
+    <div className="relative flex gap-8 overflow-hidden py-4 md:gap-12">
       {/* Gradient masks */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-[--rh-background] to-transparent md:w-32" />
       <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-[--rh-background] to-transparent md:w-32" />
@@ -38,7 +46,9 @@ function TokenMarquee({
       <div
         className={cn(
           "flex shrink-0 items-center gap-8 md:gap-12",
-          direction === "left" ? "animate-marquee-left" : "animate-marquee-right",
+          direction === "left"
+            ? "animate-marquee-left"
+            : "animate-marquee-right"
         )}
         style={{ animationDuration: `${speed}s` }}
       >
@@ -53,7 +63,10 @@ function TokenMarquee({
                 alt={token.name}
                 width={80}
                 height={80}
-                className="h-full w-full object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.4)]"
+                className={cn(
+                  "h-full w-full object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.4)]",
+                  token.imageClassName
+                )}
               />
             </div>
             <span className="text-xs font-medium text-white/50 transition-colors group-hover:text-white/80 md:text-sm">
@@ -66,7 +79,9 @@ function TokenMarquee({
       <div
         className={cn(
           "flex shrink-0 items-center gap-8 md:gap-12",
-          direction === "left" ? "animate-marquee-left" : "animate-marquee-right",
+          direction === "left"
+            ? "animate-marquee-left"
+            : "animate-marquee-right"
         )}
         style={{ animationDuration: `${speed}s` }}
         aria-hidden
@@ -82,7 +97,10 @@ function TokenMarquee({
                 alt={token.name}
                 width={80}
                 height={80}
-                className="h-full w-full object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.4)]"
+                className={cn(
+                  "h-full w-full object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.4)]",
+                  token.imageClassName
+                )}
               />
             </div>
             <span className="text-xs font-medium text-white/50 transition-colors group-hover:text-white/80 md:text-sm">
