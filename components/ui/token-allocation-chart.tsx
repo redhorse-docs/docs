@@ -28,6 +28,10 @@ function polarToCartesian(
   };
 }
 
+function roundCoord(value: number) {
+  return Number(value.toFixed(3));
+}
+
 // 도넛 세그먼트 path 생성 함수
 function createDonutSegment(
   centerX: number,
@@ -56,27 +60,27 @@ function createDonutSegment(
 
   return [
     "M",
-    startOuter.x,
-    startOuter.y,
+    roundCoord(startOuter.x),
+    roundCoord(startOuter.y),
     "A",
     outerRadius,
     outerRadius,
     0,
     largeArcFlag,
     1,
-    endOuter.x,
-    endOuter.y,
+    roundCoord(endOuter.x),
+    roundCoord(endOuter.y),
     "L",
-    endInner.x,
-    endInner.y,
+    roundCoord(endInner.x),
+    roundCoord(endInner.y),
     "A",
     innerRadius,
     innerRadius,
     0,
     largeArcFlag,
     0,
-    startInner.x,
-    startInner.y,
+    roundCoord(startInner.x),
+    roundCoord(startInner.y),
     "Z",
   ].join(" ");
 }
