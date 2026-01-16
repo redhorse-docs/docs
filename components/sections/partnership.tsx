@@ -25,7 +25,7 @@ function MarqueeBanner({
   const duplicatedPartners = [...partners, ...partners];
 
   return (
-    <div className="relative flex overflow-hidden py-6">
+    <div className="relative flex gap-8 overflow-hidden py-6 md:gap-12">
       {/* Gradient masks */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[--rh-background] to-transparent md:w-40" />
       <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[--rh-background] to-transparent md:w-40" />
