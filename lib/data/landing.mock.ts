@@ -41,30 +41,107 @@ export const landingMock: LandingContent = {
       title: "Sed posuere consectetur est at lobortis",
       description:
         "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero a pharetra augue vehicula.",
+      cta: {
+        label: "Get Started",
+        href: "/app",
+      },
     },
   },
-  howItWorks: {
-    title: "Processus in tribus passibus",
+  partnership: {
+    title: "Trusted by Industry Leaders",
     description:
-      "Mauris lacinia bibendum arcu eget maximus. Etiam ut lacus non augue porta vulputate.",
-    steps: [
+      "We collaborate with top-tier partners across the blockchain ecosystem to deliver exceptional value.",
+    partners: [
       {
-        name: "Frame",
-        description:
-          "Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis.",
-        icon: "spark",
+        name: "Binance",
+        logo: "/partners/binance.svg",
+        href: "https://binance.com",
       },
       {
-        name: "Compose",
-        description:
-          "Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum.",
-        icon: "bolt",
+        name: "Coinbase",
+        logo: "/partners/coinbase.svg",
+        href: "https://coinbase.com",
       },
       {
-        name: "Hand Off",
-        description:
-          "Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis.",
-        icon: "orbit",
+        name: "Ethereum",
+        logo: "/partners/ethereum.svg",
+        href: "https://ethereum.org",
+      },
+      {
+        name: "Polygon",
+        logo: "/partners/polygon.svg",
+        href: "https://polygon.technology",
+      },
+      {
+        name: "Chainlink",
+        logo: "/partners/chainlink.svg",
+        href: "https://chain.link",
+      },
+      {
+        name: "OpenSea",
+        logo: "/partners/opensea.svg",
+        href: "https://opensea.io",
+      },
+      {
+        name: "Uniswap",
+        logo: "/partners/uniswap.svg",
+        href: "https://uniswap.org",
+      },
+      {
+        name: "Upbit",
+        logo: "/partners/upbit.png",
+        href: "https://upbit.com",
+      },
+    ],
+  },
+  press: {
+    title: "Featured in Top Publications",
+    description:
+      "See what leading media outlets are saying about RedHorse Protocol.",
+    items: [
+      {
+        source: "CoinDesk",
+        logo: "/press/coindesk.svg",
+        title:
+          "RedHorse Protocol Announces Strategic Partnership with Major Exchange",
+        href: "#",
+        date: "Jan 2025",
+      },
+      {
+        source: "Cointelegraph",
+        logo: "/press/cointelegraph.svg",
+        title: "How RedHorse is Revolutionizing DeFi Membership Models",
+        href: "#",
+        date: "Dec 2024",
+      },
+      {
+        source: "The Block",
+        logo: "/press/theblock.svg",
+        title: "RedHorse Secures $10M in Series A Funding Round",
+        href: "#",
+        date: "Nov 2024",
+      },
+      {
+        source: "Decrypt",
+        logo: "/press/decrypt.svg",
+        title: "Inside RedHorse: The Protocol Bridging TradFi and DeFi",
+        href: "#",
+        date: "Oct 2024",
+      },
+      {
+        source: "Bloomberg Crypto",
+        logo: "/press/bloomberg.svg",
+        title: "RedHorse Token Sees 300% Growth Following Platform Launch",
+        href: "#",
+        date: "Sep 2024",
+      },
+      {
+        source: "Forbes Digital",
+        logo: "/press/forbes.svg",
+        title:
+          "Top 10 DeFi Projects to Watch in 2025 - RedHorse Leads the Pack",
+        href: "#",
+        date: "Aug 2024",
       },
     ],
   },
@@ -74,32 +151,44 @@ export const landingMock: LandingContent = {
       "Praesent sed pellentesque erat. Aliquam sodales lorem sit amet orci volutpat sagittis.",
     tiers: [
       {
-        name: "Signal",
+        name: "Bronze",
+        color: "bronze",
+        price: "$99/mo",
         perks: [
-          "Praesent dictum feugiat turpis fermentum.",
-          "Integer mollis nec ligula sit amet mattis.",
-          "Etiam ultricies libero at enim iaculis.",
+          "Basic portfolio tracking & alerts",
+          "Access to community channels",
+          "Monthly market reports",
+          "Standard customer support",
         ],
-        ctaLabel: "Reserve",
+        ctaLabel: "Get Started",
       },
       {
-        name: "Velocity",
+        name: "Silver",
+        color: "silver",
+        price: "$249/mo",
+        perks: [
+          "All Bronze benefits included",
+          "Priority trading signals",
+          "Weekly 1-on-1 consultations",
+          "Early access to new features",
+          "Dedicated account manager",
+        ],
+        ctaLabel: "Upgrade Now",
+      },
+      {
+        name: "Gold",
+        color: "gold",
         featured: true,
+        price: "$599/mo",
         perks: [
-          "Mauris commodo libero vitae justo faucibus.",
-          "Curabitur auctor lacus id massa porta.",
-          "Vestibulum imperdiet nisl vitae tempus blandit.",
+          "All Silver benefits included",
+          "VIP whale alerts & analytics",
+          "Exclusive investment opportunities",
+          "Personal wealth strategist",
+          "Priority liquidity access",
+          "Annual summit invitation",
         ],
-        ctaLabel: "Join Waitlist",
-      },
-      {
-        name: "Origin",
-        perks: [
-          "Aenean in gravida metus sed luctus.",
-          "Suspendisse potenti integer non felis.",
-          "Nam aliquam nisl ut lectus hendrerit.",
-        ],
-        ctaLabel: "Contact Team",
+        ctaLabel: "Go Premium",
       },
     ],
   },
@@ -112,8 +201,8 @@ export const landingMock: LandingContent = {
     metrics: [
       { label: "Total Supply", value: "120M RH" },
       { label: "Initial Float", value: "15.0%" },
-      { label: "Vesting", value: "18 month linear" },
-      { label: "Chain", value: "OP Mainnet" },
+      { label: "Vesting", value: "18m linear" },
+      { label: "Chain", value: "Mainnet" },
     ],
     allocation: [
       { label: "Community", value: "40%" },
@@ -122,8 +211,8 @@ export const landingMock: LandingContent = {
       { label: "Advisors", value: "15%" },
     ],
     links: [
-      { label: "View Explorer", href: "#" },
-      { label: "Audit PDF", href: "#" },
+      // { label: "View Explorer", href: "#" },
+      // { label: "Audit PDF", href: "#" },
     ],
   },
   security: {
@@ -135,14 +224,14 @@ export const landingMock: LandingContent = {
         title: "Audit Ready",
         description:
           "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.",
-        badge: "Placeholder",
+        // badge: "Placeholder",
         icon: "shield",
       },
       {
         title: "Multisig Treasury",
         description:
           "Sed posuere consectetur est at lobortis lorem ipsum dolor sit amet.",
-        badge: "5 of 9",
+        // badge: "5 of 9",
         icon: "orbit",
       },
       {

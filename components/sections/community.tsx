@@ -1,16 +1,22 @@
-import { SectionShell } from "@/components/ui/section-shell";
+"use client";
+
 import { Button } from "@/components/ui/button";
-import type { CommunityChannel } from "@/lib/types/landing";
-import type { IconName } from "@/lib/types/landing";
+import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
+import { SectionShell } from "@/components/ui/section-shell";
+import type { CommunityChannel, IconName } from "@/lib/types/landing";
 import type { LucideIcon } from "lucide-react";
 import {
-  Orbit,
-  Sparkles,
+  Coins,
+  Crown,
   Layers,
+  Lock,
+  Orbit,
   ShieldCheck,
+  Sparkles,
   Waves,
   Zap,
 } from "lucide-react";
+import Image from "next/image";
 
 const iconMap: Record<IconName, LucideIcon> = {
   spark: Sparkles,
@@ -19,6 +25,14 @@ const iconMap: Record<IconName, LucideIcon> = {
   shield: ShieldCheck,
   wave: Waves,
   bolt: Zap,
+  crown: Crown,
+  lock: Lock,
+  coin: Coins,
+};
+
+const customIcons: Record<string, string> = {
+  Telegram: "/logos_telegram.png",
+  "X (Twitter)": "/line-md_twitter-filled.png",
 };
 
 type CommunitySectionProps = {
@@ -39,45 +53,55 @@ export function CommunitySection({
       title={title}
       description={description}
     >
-      <div className="grid gap-6 md:grid-cols-2">
+      <StaggerContainer className="grid gap-8 md:grid-cols-2">
         {channels.map((channel) => {
           const Icon = iconMap[channel.icon ?? "spark"] ?? Sparkles;
+          const customIconSrc = customIcons[channel.title];
 
           return (
-            <article
-              key={channel.title}
-              className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6"
-            >
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-6">
-                <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(224,50,58,0.35),_transparent_70%)] opacity-60" />
-                <div className="absolute -inset-6 -z-10 bg-[conic-gradient(from_180deg,_rgba(224,50,58,0.2),_transparent_45%,_rgba(255,255,255,0.08))] blur-3xl" />
-                <div className="relative flex items-center gap-4">
-                  <div className="relative flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[rgba(224,50,58,0.95)] via-[rgba(136,63,191,0.9)] to-[rgba(60,132,255,0.9)] shadow-[0_20px_45px_rgba(0,0,0,0.45)]">
-                    <div className="absolute inset-0 rounded-2xl border border-white/20" />
-                    <Icon className="h-8 w-8 text-white" strokeWidth={1.6} />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.3em] text-white/40">
-                      Signal Channel
-                    </p>
-                    <h3 className="text-xl font-semibold text-white">
-                      {channel.title}
-                    </h3>
+            <StaggerItem key={channel.title}>
+              <article className="group flex h-full flex-col gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-8 transition-all duration-300 hover:border-white/25 hover:shadow-[0_30px_60px_rgba(2,4,12,0.5)] md:p-10">
+                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-8 transition-all duration-300 group-hover:border-white/20">
+                  <div className="relative flex items-center gap-5">
+                    <div className="relative flex size-20 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 md:size-24">
+                      <div className="absolute inset-0 rounded-2xl" />
+                      {customIconSrc ? (
+                        <Image
+                          src={customIconSrc}
+                          alt={channel.title}
+                          width={48}
+                          height={48}
+                          className="h-10 w-10 object-contain md:h-12 md:w-12"
+                        />
+                      ) : (
+                        <Icon
+                          className="h-10 w-10 text-white md:h-12 md:w-12"
+                          strokeWidth={1.6}
+                        />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-2xl font-semibold text-white md:text-3xl">
+                        {channel.title}
+                      </h3>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <p className="text-sm text-white/70">{channel.description}</p>
-              <Button
-                variant="ghost"
-                className="mt-auto w-full justify-center border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
-                href={channel.href}
-              >
-                {channel.action}
-              </Button>
-            </article>
+                <p className="font-serif text-base text-white/75 md:text-lg">
+                  {channel.description}
+                </p>
+                <Button
+                  variant="ghost"
+                  className="mt-auto w-full justify-center border border-white/10 bg-white/5 px-6 py-4 text-base font-semibold text-white transition-all duration-300 hover:border-white/25 hover:bg-white/10 md:text-lg"
+                  href={channel.href}
+                >
+                  {channel.action}
+                </Button>
+              </article>
+            </StaggerItem>
           );
         })}
-      </div>
+      </StaggerContainer>
     </SectionShell>
   );
 }

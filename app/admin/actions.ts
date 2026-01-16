@@ -5,6 +5,15 @@ import type { Prisma } from "@prisma/client";
 import type { LandingContent } from "@/lib/types/landing";
 import { prisma } from "@/lib/utils/prisma";
 
+const applyLandingDefaults = (content: LandingContent): LandingContent => {
+  return {
+    ...content,
+    partnership: content.partnership ?? landingMock.partnership,
+    press: content.press ?? landingMock.press,
+    howItWorks: content.howItWorks ?? landingMock.howItWorks,
+  };
+};
+
 /** 데이터 베이스에서 LandingContent를 불러온다. */
 export async function getLandingContent(): Promise<LandingContent> {
   if (!process.env.DATABASE_URL) {
@@ -17,7 +26,7 @@ export async function getLandingContent(): Promise<LandingContent> {
     });
 
     if (record && record.content) {
-      return record.content as LandingContent;
+      return applyLandingDefaults(record.content as LandingContent);
     }
 
     return landingMock;

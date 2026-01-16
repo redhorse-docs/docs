@@ -8,10 +8,15 @@
   --rh-primary: #e0323a;
   --rh-primary-strong: #b9242b;
   --rh-primary-muted: rgba(224, 50, 58, 0.16);
+  --rh-secondary: #6a5efb;
+  --rh-secondary-strong: #4c44d7;
+  --rh-secondary-muted: rgba(106, 94, 251, 0.25);
   --rh-text: #f4f4f5;
   --rh-text-muted: #a1a1aa;
-  --rh-font-sans: "Geist", "Inter", "Segoe UI", system-ui, -apple-system,
-    BlinkMacSystemFont, sans-serif;
+  --rh-font-sans: var(--font-heading), "Geist", "Inter", "Space Grotesk",
+    "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --rh-font-heading: var(--font-heading), "Space Grotesk", "Geist", sans-serif;
+  --rh-font-serif: var(--font-serif), "Spectral", "Playfair Display", serif;
   --rh-font-mono: "Geist Mono", "JetBrains Mono", "SFMono-Regular",
     "Source Code Pro", ui-monospace, Menlo, Monaco, Consolas, monospace;
   --font-geist-sans: var(--rh-font-sans);
@@ -28,14 +33,45 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(
-      circle at top,
-      rgba(224, 50, 58, 0.12),
-      transparent 45%
-    ),
+  background:
+    radial-gradient(circle at 15% 15%, rgba(224, 50, 58, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(106, 94, 251, 0.1), transparent 40%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent),
     #040506;
   color: var(--rh-text);
   font-family: var(--rh-font-sans);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 140px 140px;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.font-heading {
+  font-family: var(--rh-font-heading);
+  letter-spacing: -0.015em;
+}
+
+.font-serif {
+  font-family: var(--rh-font-serif);
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 ::selection {
@@ -160,4 +196,151 @@ body {
   .token-glow-ring {
     animation: none;
   }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Card hover glow effect */
+@keyframes card-glow {
+  0%,
+  100% {
+    box-shadow: 0 20px 45px rgba(2, 4, 12, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 25px 55px rgba(2, 4, 12, 0.45),
+      0 0 30px rgba(224, 50, 58, 0.15);
+  }
+}
+
+/* Gradient text animation for hero */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-text {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Subtle pulse for badges */
+@keyframes subtle-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 2s ease-in-out infinite;
+}
+
+/* Enhanced focus states */
+*:focus-visible {
+  outline: 2px solid var(--rh-primary);
+  outline-offset: 2px;
+}
+
+/* Button glow pulse animation */
+@keyframes button-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(224, 50, 58, 0.4),
+      0 0 40px rgba(224, 50, 58, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 25px rgba(224, 50, 58, 0.5),
+      0 0 50px rgba(224, 50, 58, 0.3);
+  }
+}
+
+.btn-glow {
+  animation: button-glow 2s ease-in-out infinite;
+}
+
+/* Section divider gradient */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(224, 50, 58, 0.3),
+    rgba(106, 94, 251, 0.3),
+    transparent
+  );
+}
+
+/* Marquee animations */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-left {
+  animation: marquee-left linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right linear infinite;
+}
+
+/* Background path animation */
+@keyframes path-draw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes path-glow {
+  0%,
+  100% {
+    opacity: 0.3;
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 0.6;
+    filter: blur(8px);
+  }
+}
+
+.animate-path-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: path-draw 3s ease-out forwards;
+}
+
+.animate-path-glow {
+  animation: path-glow 4s ease-in-out infinite;
 }

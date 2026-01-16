@@ -1,4 +1,13 @@
-export type IconName = "spark" | "orbit" | "stack" | "shield" | "wave" | "bolt";
+export type IconName =
+  | "spark"
+  | "orbit"
+  | "stack"
+  | "shield"
+  | "wave"
+  | "bolt"
+  | "crown"
+  | "lock"
+  | "coin";
 
 export type HeroContent = {
   title: string;
@@ -23,6 +32,22 @@ export type MembershipTier = {
   perks: string[];
   featured?: boolean;
   ctaLabel: string;
+  price?: string;
+  color?: "bronze" | "silver" | "gold";
+};
+
+export type Partner = {
+  name: string;
+  logo: string;
+  href?: string;
+};
+
+export type PressItem = {
+  source: string;
+  logo?: string;
+  title: string;
+  href: string;
+  date?: string;
 };
 
 export type TokenCard = {
@@ -31,7 +56,7 @@ export type TokenCard = {
   highlight?: string;
 };
 
-export type TokenSnapshot = {
+export type TokenAllocationSnapshot = {
   contract: {
     label: string;
     address: string;
@@ -79,19 +104,35 @@ export type LandingContent = {
     banner?: {
       title: string;
       description: string;
+      cta?: {
+        label: string;
+        href: string;
+      };
     };
   };
-  howItWorks: {
+  // 기존 DB 호환성을 위해 optional
+  howItWorks?: {
     title: string;
     description: string;
     steps: ProcessStep[];
+  };
+  // 새로 추가된 섹션들 (optional로 기존 DB 호환)
+  partnership?: {
+    title: string;
+    description: string;
+    partners: Partner[];
+  };
+  press?: {
+    title: string;
+    description: string;
+    items: PressItem[];
   };
   membership: {
     title: string;
     description: string;
     tiers: MembershipTier[];
   };
-  tokenInfo: TokenSnapshot;
+  tokenInfo: TokenAllocationSnapshot;
   security: {
     title: string;
     description: string;
