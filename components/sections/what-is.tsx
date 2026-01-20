@@ -53,7 +53,7 @@ export function WhatIsSection({
             <StaggerItem key={item.title}>
               <article
                 className={cn(
-                  "group flex h-full flex-col gap-6 rounded-3xl border p-8 shadow-[0_20px_45px_rgba(2,4,12,0.35)] backdrop-blur-sm transition-all duration-300 md:p-10",
+                  "group flex h-full flex-col items-center gap-6 rounded-3xl border p-8 text-center shadow-[0_20px_45px_rgba(2,4,12,0.35)] backdrop-blur-sm transition-all duration-300 md:p-10",
                   "hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(2,4,12,0.5)]",
                   cardVariants[index % cardVariants.length]
                 )}

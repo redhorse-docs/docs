@@ -96,13 +96,13 @@ type DonutChartPropsInternal = {
 // SVG 도넛 차트 컴포넌트
 function DonutChart({
   allocations,
-  size = 200,
-  outerRadius = 88,
-  innerRadius = 46,
+  size = 240,
+  outerRadius = 110,
+  innerRadius = 65,
   className,
 }: DonutChartPropsInternal) {
   const center = size / 2;
-  const gap = 1.6; // 세그먼트 간 간격 (도 단위)
+  const gap = 2.5; // 세그먼트 간 간격 (도 단위) - 더 넓게
 
   // 각 할당량을 각도로 변환
   let currentAngle = -90; // 시작 각도 (12시 방향)
@@ -123,12 +123,24 @@ function DonutChart({
 
   return (
     <div className="relative flex items-center justify-center">
+      {/* 배경 글로우 효과 */}
+      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#e0323a]/20 via-transparent to-[#6a5efb]/20 blur-2xl" />
       <svg
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
         className={className}
+        style={{ filter: "drop-shadow(0 4px 20px rgba(0,0,0,0.3))" }}
       >
+        {/* 배경 원 */}
+        <circle
+          cx={center}
+          cy={center}
+          r={outerRadius + 2}
+          fill="none"
+          stroke="rgba(255,255,255,0.05)"
+          strokeWidth="1"
+        />
         {/* 각 세그먼트를 path로 그리기 */}
         {segments.map((segment, index) => (
           <path
@@ -142,7 +154,10 @@ function DonutChart({
               segment.endAngle
             )}
             fill={segment.color}
-            className="transition-opacity duration-300 hover:opacity-90"
+            className="cursor-pointer transition-all duration-300 hover:brightness-110"
+            style={{
+              filter: `drop-shadow(0 2px 8px ${segment.color}40)`,
+            }}
           />
         ))}
       </svg>
@@ -159,30 +174,43 @@ function AllocationList({
   totalSupply: string;
 }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5 sm:gap-6">
       <div>
-        <h3 className="font-heading text-2xl font-semibold text-white md:text-3xl">
+        <h3 className="font-heading text-xl font-bold text-white sm:text-2xl md:text-3xl">
           Allocation of Supply
         </h3>
-        <p className="font-serif mt-2 text-lg text-white/70 md:text-xl">
-          Total Supply: {totalSupply}
+        <p className="font-serif mt-2 text-base text-white/80 sm:text-lg md:text-xl">
+          Total Supply: <span className="font-semibold text-white">{totalSupply}</span>
         </p>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3 sm:gap-4">
         {allocations.map((item, index) => (
-          <div key={index} className="group">
-            <div className="flex items-start gap-3">
-              {/* 색상 인디케이터 바 */}
+          <div
+            key={index}
+            className="group rounded-xl border border-transparent bg-white/5 p-3 transition-all duration-300 hover:border-white/10 hover:bg-white/10 sm:p-4"
+          >
+            <div className="flex items-center gap-3 sm:gap-4">
+              {/* 색상 인디케이터 - 원형 */}
               <div
-                className="mt-1.5 h-1.5 w-12 flex-shrink-0 rounded-full transition-all duration-300 group-hover:w-16"
-                style={{ backgroundColor: item.color }}
+                className="h-4 w-4 flex-shrink-0 rounded-full ring-2 ring-white/20 transition-all duration-300 group-hover:scale-110 group-hover:ring-white/40 sm:h-5 sm:w-5"
+                style={{
+                  backgroundColor: item.color,
+                  boxShadow: `0 0 12px ${item.color}60`,
+                }}
               />
+              {/* 퍼센트 */}
+              <div
+                className="min-w-[48px] text-right font-mono text-lg font-bold sm:min-w-[56px] sm:text-xl md:text-2xl"
+                style={{ color: item.color }}
+              >
+                {item.percentage}%
+              </div>
               {/* 텍스트 */}
               <div className="flex-1">
-                <p className="font-heading text-base font-semibold text-white md:text-lg">
-                  {item.percentage}% {item.label}
+                <p className="font-heading text-sm font-semibold text-white sm:text-base md:text-lg">
+                  {item.label}
                 </p>
-                <p className="font-serif mt-1 text-sm leading-relaxed text-white/60 md:text-base">
+                <p className="font-serif mt-0.5 text-xs leading-relaxed text-white/70 sm:text-sm">
                   {item.description}
                 </p>
               </div>
@@ -200,23 +228,54 @@ export function TokenAllocationChart({
 }: DonutChartProps) {
   return (
     <FadeUp delay={0.1}>
-      <div className="rounded-3xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 shadow-[0_30px_65px_rgba(2,4,12,0.35)] sm:p-8 md:p-10">
-        <div className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+      <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-transparent p-5 shadow-[0_30px_65px_rgba(2,4,12,0.5)] backdrop-blur-sm sm:p-6 md:p-8 lg:p-10">
+        {/* 모바일/태블릿: 세로 레이아웃, PC: 2컬럼 그리드 */}
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-16">
           {/* 도넛 차트 */}
           <div className="flex items-center justify-center">
-            <div className="lg:hidden">
+            {/* 모바일 */}
+            <div className="sm:hidden">
               <DonutChart
                 allocations={allocations}
-                className="h-auto w-full max-w-[220px] sm:max-w-[260px] md:max-w-[300px]"
+                size={220}
+                outerRadius={100}
+                innerRadius={60}
               />
             </div>
-            <div className="hidden lg:block">
+            {/* 태블릿 */}
+            <div className="hidden sm:block lg:hidden">
               <DonutChart
                 allocations={allocations}
-                size={240}
-                outerRadius={112}
-                innerRadius={50}
-                className="h-auto w-full max-w-[360px] lg:max-w-[440px] xl:max-w-[520px] 2xl:max-w-[600px]"
+                size={280}
+                outerRadius={125}
+                innerRadius={75}
+              />
+            </div>
+            {/* 데스크톱 lg */}
+            <div className="hidden lg:block xl:hidden">
+              <DonutChart
+                allocations={allocations}
+                size={340}
+                outerRadius={155}
+                innerRadius={90}
+              />
+            </div>
+            {/* 데스크톱 xl */}
+            <div className="hidden xl:block 2xl:hidden">
+              <DonutChart
+                allocations={allocations}
+                size={400}
+                outerRadius={180}
+                innerRadius={105}
+              />
+            </div>
+            {/* 데스크톱 2xl */}
+            <div className="hidden 2xl:block">
+              <DonutChart
+                allocations={allocations}
+                size={450}
+                outerRadius={200}
+                innerRadius={120}
               />
             </div>
           </div>

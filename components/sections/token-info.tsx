@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
-import { PlaceholderIcon } from "@/components/ui/placeholder-icon";
 import { SectionShell } from "@/components/ui/section-shell";
 import { TokenAllocationChart } from "@/components/ui/token-allocation-chart";
 import type { TokenAllocationSnapshot } from "@/lib/types/landing";
@@ -26,46 +25,18 @@ export function TokenInfoSection({
       id="token"
       eyebrow="Token"
       title="Token Snapshot"
-      description="Placeholder stats and allocation blocks ensure the layout holds before live data."
+      description="RH token supply and allocation details for the RedHorse ecosystem."
     >
-      {/* Floating token decorations */}
-      <div className="pointer-events-none absolute right-4 top-20 hidden opacity-40 lg:block">
-        <Image
-          src="/tokens/Solana_Camera1.png"
-          alt=""
-          width={64}
-          height={64}
-          className="token-float-slow drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
-          style={{ animationDelay: "0s" }}
-        />
-      </div>
-      <div className="pointer-events-none absolute left-8 top-1/3 hidden opacity-30 lg:block">
-        <Image
-          src="/tokens/Ethereum_Camera1.png"
-          alt=""
-          width={48}
-          height={48}
-          className="token-float-slow drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
-          style={{ animationDelay: "1.5s" }}
-        />
-      </div>
-      <div className="pointer-events-none absolute bottom-32 right-12 hidden opacity-35 lg:block">
-        <Image
-          src="/tokens/Bitcoin_Camera1.png"
-          alt=""
-          width={52}
-          height={52}
-          className="token-float-slow drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
-          style={{ animationDelay: "2.8s" }}
-        />
-      </div>
       <StaggerContainer className="grid gap-8">
         <StaggerItem>
           <article className="flex h-full flex-col rounded-3xl border border-white/20 bg-gradient-to-br from-[rgba(224,50,58,0.28)] via-white/5 to-transparent p-8 shadow-[0_30px_65px_rgba(2,4,12,0.45)] transition-all duration-300 hover:border-[--rh-primary]/50 md:p-10">
             <div className="flex items-center gap-3 sm:gap-4">
-              <PlaceholderIcon
-                name="stack"
-                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14"
+              <Image
+                src="/logo-small.png"
+                alt="RH"
+                width={56}
+                height={56}
+                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 object-contain"
               />
               <p className="text-[0.65rem] uppercase tracking-[0.3em] text-white/40 sm:text-sm md:text-base">
                 {contract.label}
@@ -99,34 +70,40 @@ export function TokenInfoSection({
             totalSupply="10,000,000,000 RH"
             allocations={[
               {
-                percentage: 25,
-                label: "Community & Rewards",
-                description: "Epochs, campaigns, and member programs",
-                color: "#e0323a", // --rh-primary
+                percentage: 35,
+                label: "Rewards Program",
+                description: "Membership rewards, campaigns, ecosystem programs",
+                color: "#FF4757", // 선명한 레드
               },
               {
                 percentage: 20,
-                label: "Liquidity & Market Support",
-                description: "Liquidity provisioning and market operations",
-                color: "#6a5efb", // --rh-secondary
-              },
-              {
-                percentage: 20,
-                label: "Treasury",
-                description: "Operations, reserves, sustainability",
-                color: "#8b8b9f", // 회색 계열
-              },
-              {
-                percentage: 20,
-                label: "Team & Contributors",
-                description: "Long-term alignment",
-                color: "#c92a2f", // 더 어두운 빨강
+                label: "Ecosystem & Partnerships",
+                description: "Partner initiatives, integrations, grants (if applicable)",
+                color: "#7C5CFF", // 선명한 퍼플
               },
               {
                 percentage: 15,
-                label: "Ecosystem",
-                description: "Strategic initiatives and collaborations",
-                color: "#4c44d7", // 더 어두운 보라
+                label: "Liquidity & Market Support",
+                description: "Initial liquidity provisioning, market operations (policy-defined)",
+                color: "#00D9FF", // 시안
+              },
+              {
+                percentage: 15,
+                label: "Community Growth & Marketing",
+                description: "Community campaigns, KOL/PR budget, growth initiatives",
+                color: "#FFB800", // 골드/옐로우
+              },
+              {
+                percentage: 10,
+                label: "Team & Contributors",
+                description: "Core team and long-term contributors (vested)",
+                color: "#00E676", // 그린
+              },
+              {
+                percentage: 5,
+                label: "Treasury / Reserve",
+                description: "Contingency reserve under treasury policy",
+                color: "#A0AEC0", // 밝은 회색
               },
             ]}
           />

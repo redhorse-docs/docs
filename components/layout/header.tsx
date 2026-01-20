@@ -18,12 +18,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur-xl">
       <Container className="flex h-20 items-center justify-between gap-4">
-        <Link
-          href="/"
+        <button
+          onClick={() => window.location.reload()}
           className="text-sm font-semibold uppercase tracking-[0.3em] text-white"
         >
           <Image src='/redhorse-logo.png' alt='RedHorse' width={200} height={200} />
-        </Link>
+        </button>
         <nav className="hidden items-center gap-6 text-sm text-white/70 lg:flex">
           {navLinks.map((link) => (
             <Link

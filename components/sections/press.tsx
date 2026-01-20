@@ -76,7 +76,7 @@ export function PressSection({
             },
           },
         }}
-        className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-4"
+        className="flex snap-x snap-mandatory gap-6 overflow-x-auto overflow-y-hidden scroll-smooth pb-4 scrollbar-hide"
       >
         {items.map((item, index) => (
           <StaggerItem key={`${item.source}-${index}`}>

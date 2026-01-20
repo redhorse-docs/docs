@@ -2,45 +2,46 @@ import type { LandingContent } from "@/lib/types/landing";
 
 export const landingMock: LandingContent = {
   hero: {
-    title: "RedHorse Protocol",
+    title: "Red Horse: RH Coin",
     subtitle:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus amet lacus nec rutrum ultrices.",
+      "Join!! On-chain Membership & Participation Rewards",
     ctas: [
-      { label: "Launch App", href: "/app" },
+      { label: "Explore Docs",
+        href: "https://rh-project.gitbook.io/red-horse-rh/", },
       {
-        label: "Explore Docs",
-        href: "https://rh-project.gitbook.io/red-horse-rh/",
+        label: "Community",
+        href: "https://t.me/RedHorse_RHcoin",
       },
     ],
   },
   whatIs: {
-    title: "Lorem ipsum primis in faucibus",
+    title: "Tiered Membership System",
     description:
-      "Cras rhoncus lectus nisl, eget posuere lorem aliquet vitae. Pellentesque sed dolor vitae lorem ultricies auctor.",
+      "Membership functions as a locking-based access and incentives layer enabling users to lock RH tokens in exchange for tiered access, rewards, and participation rights.",
     items: [
       {
-        title: "Strata Layouts",
+        title: "Membership Tiers",
         description:
-          "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do.",
+          "Derived from on-chain locking state, not discretionary decisions.",
         icon: "spark",
       },
       {
-        title: "Token Snapshot",
+        title: "Locking Rules",
         description:
-          "Vivamus viverra mi in lorem hendrerit, vel convallis urna facilisis.",
+          "Fixed-term locking with snapshot-based accounting minimizing manipulation.",
         icon: "orbit",
       },
       {
-        title: "Docs-Ready Layout",
+        title: "Rewards Program",
         description:
-          "Integer feugiat, lorem quis vehicula elementum, dolor mauris congue mi.",
+          "Epoch and campaign rewards distributed under explicit budgets and transparent rules.",
         icon: "stack",
       },
     ],
     banner: {
-      title: "Sed posuere consectetur est at lobortis",
+      title: "Activate Your Membership",
       description:
-        "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero a pharetra augue vehicula.",
+        "Lock your RH tokens to unlock tiered access, rewards, and participation rights in the RedHorse ecosystem.",
       cta: {
         label: "Get Started",
         href: "/app",
@@ -48,7 +49,7 @@ export const landingMock: LandingContent = {
     },
   },
   partnership: {
-    title: "Trusted by Industry Leaders",
+    title: "Built with Trusted Infrastructure",
     description:
       "We collaborate with top-tier partners across the blockchain ecosystem to deliver exceptional value.",
     partners: [
@@ -88,14 +89,14 @@ export const landingMock: LandingContent = {
         href: "https://uniswap.org",
       },
       {
-        name: "Upbit",
-        logo: "/partners/upbit.png",
-        href: "https://upbit.com",
+        name: "Aave",
+        logo: "/partners/aave.svg",
+        href: "https://aave.com",
       },
     ],
   },
   press: {
-    title: "Featured in Top Publications",
+    title: "Updates & Publications",
     description:
       "See what leading media outlets are saying about RedHorse Protocol.",
     items: [
@@ -146,47 +147,41 @@ export const landingMock: LandingContent = {
     ],
   },
   membership: {
-    title: "Tiered Lorem Modules",
+    title: "Membership Tiers",
     description:
-      "Praesent sed pellentesque erat. Aliquam sodales lorem sit amet orci volutpat sagittis.",
+      "Lock RH tokens to access tiered membership benefits, rewards, and participation rights.",
     tiers: [
       {
-        name: "Bronze",
+        name: "Base",
         color: "bronze",
-        price: "$99/mo",
+        price: "Tier 1",
         perks: [
-          "Basic portfolio tracking & alerts",
-          "Access to community channels",
-          "Monthly market reports",
-          "Standard customer support",
+          "Snapshot-based eligibility for member campaigns",
+          "Early access to public updates and announcements",
+          "Baseline rewards across participating epochs",
         ],
         ctaLabel: "Get Started",
       },
       {
-        name: "Silver",
+        name: "Plus",
         color: "silver",
-        price: "$249/mo",
+        featured: true,
+        price: "Tier 2",
         perks: [
-          "All Bronze benefits included",
-          "Priority trading signals",
-          "Weekly 1-on-1 consultations",
-          "Early access to new features",
-          "Dedicated account manager",
+          "Priority eligibility across campaigns",
+          "Boosted allocation and reward weighting",
+          "Expanded participation and governance scope",
         ],
         ctaLabel: "Upgrade Now",
       },
       {
-        name: "Gold",
+        name: "Prime",
         color: "gold",
-        featured: true,
-        price: "$599/mo",
+        price: "Tier 3",
         perks: [
-          "All Silver benefits included",
-          "VIP whale alerts & analytics",
-          "Exclusive investment opportunities",
-          "Personal wealth strategist",
-          "Priority liquidity access",
-          "Annual summit invitation",
+          "Highest-priority eligibility where applicable",
+          "Access to limited campaigns and curated opportunities",
+          "Dedicated support route via official channels",
         ],
         ctaLabel: "Go Premium",
       },
@@ -194,21 +189,23 @@ export const landingMock: LandingContent = {
   },
   tokenInfo: {
     contract: {
-      label: "Contract",
-      address: "0xabc0...cafe",
-      helper: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      label: "RH Mint Address",
+      address: "A3rk5gtQ2S24Fhz8Ctfhjj2bDgK1SZF7fXvbH1Jty5Bp",
+      helper: "The official RH token mint address on Solana.",
     },
     metrics: [
-      { label: "Total Supply", value: "120M RH" },
-      { label: "Initial Float", value: "15.0%" },
-      { label: "Vesting", value: "18m linear" },
-      { label: "Chain", value: "Mainnet" },
+      { label: "Total Supply", value: "10B RH" },
+      { label: "Rewards Program", value: "35%" },
+      { label: "Ecosystem & Partnerships", value: "20%" },
+      { label: "Chain", value: "Solana" },
     ],
     allocation: [
-      { label: "Community", value: "40%" },
-      { label: "Core Team", value: "25%" },
-      { label: "Treasury", value: "20%" },
-      { label: "Advisors", value: "15%" },
+      { label: "Rewards Program", value: "35%" },
+      { label: "Ecosystem & Partnerships", value: "20%" },
+      { label: "Liquidity & Market Support", value: "15%" },
+      { label: "Community Growth & Marketing", value: "15%" },
+      { label: "Team & Contributors", value: "10%" },
+      { label: "Treasury / Reserve", value: "5%" },
     ],
     links: [
       // { label: "View Explorer", href: "#" },
@@ -216,76 +213,74 @@ export const landingMock: LandingContent = {
     ],
   },
   security: {
-    title: "Praesidium indicia",
+    title: "Security for RH Locking",
     description:
-      "Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero a pharetra augue.",
+      "RH locking is enforced on-chain using transparent rules with minimized administrative trust requirements.",
     highlights: [
       {
-        title: "Audit Ready",
+        title: "Non-Custodial Locking",
         description:
-          "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.",
-        // badge: "Placeholder",
+          "Locking is program-enforced—no discretionary withdrawals or manual control.",
         icon: "shield",
       },
       {
-        title: "Multisig Treasury",
+        title: "Snapshot Integrity",
         description:
-          "Sed posuere consectetur est at lobortis lorem ipsum dolor sit amet.",
-        // badge: "5 of 9",
+          "Snapshot rules are deterministic and verifiable, reducing distribution-time manipulation.",
         icon: "orbit",
       },
       {
-        title: "Risk Primer",
+        title: "Controlled Privileges",
         description:
-          "Maecenas faucibus mollis interdum. Curabitur blandit tempus porttitor.",
+          "Critical parameters and treasury actions are gated by multisig (and timelocks where applicable).",
         icon: "wave",
       },
     ],
   },
   roadmap: {
-    title: "Via Lorem",
+    title: "Implementation Roadmap",
     description:
-      "Sed posuere consectetur est at lobortis. Nulla vitae elit libero a pharetra augue.",
+      "Our development milestones and planned features for the RedHorse ecosystem.",
     items: [
       {
         quarter: "Q1",
-        title: "Design freeze",
+        title: "RH Locking Foundation",
         description:
-          "Praesent commodo cursus magna vel scelerisque nisl consectetur.",
+          "Launch contract-governed RH locking establishing verifiable membership state.",
         status: "done",
       },
       {
         quarter: "Q2",
-        title: "Token dummy data",
+        title: "Token & Listing Readiness",
         description:
-          "Duis mollis est non commodo luctus nisi erat porttitor ligula.",
+          "Finalize SPL issuance, liquidity operations, and disclosure standards supporting market integration.",
         status: "in-progress",
       },
       {
         quarter: "Q3",
-        title: "Membership live",
+        title: "Bounded Parameters / Reporting",
         description:
-          "Donec sed odio dui. Sed posuere consectetur est at lobortis elit.",
+          "Operate rewards by epoch budgets, publish regular reports, and expand governance within bounded parameters.",
         status: "planned",
       },
       {
         quarter: "Q4",
-        title: "Docs migration",
+        title: "Epoch Settlement & Governance",
         description:
-          "Morbi leo risus porta ac consectetur ac vestibulum at eros.",
+          "Settle rewards by epoch budgets and expand governance controls and ecosystem integrations.",
         status: "planned",
       },
     ],
   },
   community: {
-    title: "Communitas rhythmus",
+    title: "Join Our Community",
     description:
-      "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+      "Connect with the RedHorse community for updates, support, and announcements.",
     channels: [
       {
         title: "Telegram",
         description:
-          "Catch trade alerts and community bulletins the instant they publish.",
+          "Realtime announcements, support, and campaign alerts.",
         action: "Join Telegram",
         href: "https://t.me/RedHorse_RHcoin",
         icon: "wave",
@@ -293,7 +288,7 @@ export const landingMock: LandingContent = {
       {
         title: "X (Twitter)",
         description:
-          "Follow real-time roadmap drops and team insights through curated threads.",
+          "Official updates, release notes, and snapshot notices.",
         action: "Follow on X",
         href: "https://x.com/RedHorse_RH",
         icon: "spark",
@@ -301,29 +296,29 @@ export const landingMock: LandingContent = {
     ],
   },
   faq: {
-    title: "Quaestiones communes",
+    title: "Frequently Asked Questions",
     description:
-      "Aenean lacinia bibendum nulla sed consectetur pharetra augue fusce.",
+      "Common questions about the RedHorse Protocol and RH token.",
     items: [
       {
-        question: "Quando timeline parata est?",
+        question: "When will the timeline be published?",
         answer:
-          "Vestibulum id ligula porta felis euismod semper. Pellentesque ornare sem lacinia quam venenatis.",
+          "We share milestones first and add dates once dependencies are confirmed. Follow our channels for the latest status updates.",
       },
       {
-        question: "Mutantur gradus post initium?",
+        question: "Can my tier change after I lock?",
         answer:
-          "Nulla vitae elit libero a pharetra augue. Fusce dapibus tellus ac cursus commodo tortor mauris.",
+          "Tiers are derived from locked RH at snapshot points and can change when on-chain locking state changes and new snapshots occur.",
       },
       {
-        question: "Praevisus app sine ratione?",
+        question: "How are snapshots used?",
         answer:
-          "Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus.",
+          "Snapshots read on-chain locking state to determine eligibility and accounting for campaigns and epoch settlement using transparent rules.",
       },
       {
-        question: "Estne venditio aperta?",
+        question: "Is there a public token sale?",
         answer:
-          "Cras justo odio dapibus ac facilisis in egestas eget quam. Nulla vitae elit libero a pharetra augue.",
+          "If a public sale is planned, details will be announced with eligibility rules, allocation method, and schedule.",
       },
     ],
   },

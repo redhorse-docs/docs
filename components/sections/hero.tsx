@@ -45,8 +45,8 @@ export function Hero({ title, subtitle, ctas }: HeroProps) {
                   variant={index === 0 ? "primary" : "ghost"}
                   className={
                     index === 0
-                      ? "btn-glow px-10 py-5 text-base sm:min-w-[220px] md:text-lg"
-                      : "px-10 py-5 text-base sm:min-w-[220px] md:text-lg bg-gradient-to-r from-[#6a5efb] to-[#4c44d7] border-0 text-white font-semibold shadow-[0_4px_20px_rgba(106,94,251,0.5)] hover:shadow-[0_6px_28px_rgba(106,94,251,0.6)] hover:from-[#7a6ffb] hover:to-[#5c54e7]"
+                      ? "px-10 py-5 text-base sm:min-w-[220px] md:text-lg rounded-full font-semibold"
+                      : "px-10 py-5 text-base sm:min-w-[220px] md:text-lg rounded-full bg-gradient-to-r from-[#6a5efb] to-[#4c44d7] border-0 text-white font-semibold hover:opacity-90 transition-opacity"
                   }
                 >
                   {cta.label}
