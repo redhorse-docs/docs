@@ -58,7 +58,7 @@ export function TokenInfoSection({
               <Button
                 variant="subtle"
                 className="px-4 py-2.5 text-xs sm:px-6 sm:py-3 sm:text-base"
-                href="#"
+                href="https://solscan.io/token/A3rk5gtQ2S24Fhz8Ctfhjj2bDgK1SZF7fXvbH1Jty5Bp"
               >
                 View Explorer
               </Button>

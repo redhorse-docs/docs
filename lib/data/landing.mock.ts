@@ -6,10 +6,10 @@ export const landingMock: LandingContent = {
     subtitle:
       "Join!! On-chain Membership & Participation Rewards",
     ctas: [
-      { label: "Explore Docs",
+      { label: "Whitepaper",
         href: "https://rh-project.gitbook.io/red-horse-rh/", },
       {
-        label: "Community",
+        label: "Join Community",
         href: "https://t.me/RedHorse_RHcoin",
       },
     ],
