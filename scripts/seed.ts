@@ -18,6 +18,7 @@ async function main() {
     } else {
       console.log("저장된 데이터가 없습니다.");
     }
+    
 
     // 목데이터로 교체
     console.log("\n=== 목데이터로 교체 ===");

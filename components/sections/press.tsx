@@ -88,20 +88,19 @@ export function PressSection({
               className="group relative flex h-full w-[260px] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent transition-all duration-300 hover:border-white/25 hover:shadow-[0_30px_60px_rgba(2,4,12,0.5)] sm:w-[320px] lg:w-[360px]"
             >
               {/* Top section with logo */}
-              <div className="relative flex h-32 items-center justify-center border-b border-white/10 bg-white/5 p-6 md:h-40">
+              <div className="relative h-40 overflow-hidden border-b border-white/10 bg-white/5 md:h-48">
                 {/* Background glow */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(224,50,58,0.15),_transparent_70%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,_rgba(224,50,58,0.15),_transparent_70%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 {item.logo ? (
                   <Image
                     src={item.logo}
                     alt={item.source}
-                    width={180}
-                    height={60}
-                    className="relative h-auto max-h-12 w-auto max-w-[160px] object-contain opacity-70 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0 md:max-h-14 md:max-w-[180px]"
+                    fill
+                    className="object-cover transition-all duration-300 group-hover:scale-105"
                   />
                 ) : (
-                  <div className="relative flex items-center gap-3">
+                  <div className="flex h-full items-center justify-center gap-3">
                     <Newspaper className="h-8 w-8 text-white/40 transition-colors group-hover:text-white/70" />
                     <span className="font-heading text-xl font-bold text-white/60 transition-colors group-hover:text-white md:text-2xl">
                       {item.source}

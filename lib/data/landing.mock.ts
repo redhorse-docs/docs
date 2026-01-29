@@ -101,48 +101,89 @@ export const landingMock: LandingContent = {
       "See what leading media outlets are saying about RedHorse Protocol.",
     items: [
       {
-        source: "CoinDesk",
-        logo: "/press/coindesk.svg",
+        source: "Tech Bullion",
+        logo: "/press/default1.png",
         title:
-          "RedHorse Protocol Announces Strategic Partnership with Major Exchange",
-        href: "#",
+          "Red Horse RH Launches On-Chain Membership Protocol to Turn Commitment into a Verifiable Signal",
+        href: "https://techbullion.com/red-horse-rh-launches-on-chain-membership-protocol-to-turn-commitment-into-a-verifiable-signal/",
         date: "Jan 2025",
       },
       {
-        source: "Cointelegraph",
-        logo: "/press/cointelegraph.svg",
-        title: "How RedHorse is Revolutionizing DeFi Membership Models",
-        href: "#",
-        date: "Dec 2024",
-      },
-      {
-        source: "The Block",
-        logo: "/press/theblock.svg",
-        title: "RedHorse Secures $10M in Series A Funding Round",
-        href: "#",
-        date: "Nov 2024",
-      },
-      {
-        source: "Decrypt",
-        logo: "/press/decrypt.svg",
-        title: "Inside RedHorse: The Protocol Bridging TradFi and DeFi",
-        href: "#",
-        date: "Oct 2024",
-      },
-      {
-        source: "Bloomberg Crypto",
-        logo: "/press/bloomberg.svg",
-        title: "RedHorse Token Sees 300% Growth Following Platform Launch",
-        href: "#",
-        date: "Sep 2024",
-      },
-      {
-        source: "Forbes Digital",
-        logo: "/press/forbes.svg",
+        source: "Asia Token Fund",
+        logo: "/press/default2.png",
         title:
-          "Top 10 DeFi Projects to Watch in 2025 - RedHorse Leads the Pack",
-        href: "#",
-        date: "Aug 2024",
+          "Red Horse RH Launches On-Chain Membership Protocol to Turn Commitment into a Verifiable Signal",
+        href: "https://asiatokenfund.com/red-horse-rh-launches-on-chain-membership-protocol-to-turn-commitment-into-a-verifiable-signal/",
+        date: "Jan 2025",
+      },
+      {
+        source: "Bitchain News",
+        logo: "/press/default3.png",
+        title:
+          "Red Horse RH Launches On-Chain Membership Protocol to Turn Commitment into a Verifiable Signal",
+        href: "https://bitchainnews.com/red-horse-rh-launches-on-chain-membership-protocol-to-turn-commitment-into-a-verifiable-signal/",
+        date: "Jan 2025",
+      },
+      {
+        source: "World Crypto Times",
+        logo: "/press/default4.png",
+        title:
+          "Red Horse RH Launches On-Chain Membership Protocol to Turn Commitment into a Verifiable Signal",
+        href: "https://worldcryptotimes.com/red-horse-rh-launches-on-chain-membership-protocol-to-turn-commitment-into-a-verifiable-signal/",
+        date: "Jan 2025",
+      },
+      {
+        source: "First Crypto News",
+        logo: "/press/default5.png",
+        title:
+          "Red Horse RH Launches On-Chain Membership Protocol to Turn Commitment into a Verifiable Signal",
+        href: "https://firstcryptonews.com/red-horse-rh-launches-on-chain-membership-protocol-to-turn-commitment-into-a-verifiable-signal/",
+        date: "Jan 2025",
+      },
+      {
+        source: "Role Bitcoin",
+        logo: "/press/default6.png",
+        title:
+          "Red Horse RH Launches On-Chain Membership Protocol to Turn Commitment into a Verifiable Signal",
+        href: "https://rolebitcoin.com/red-horse-rh-launches-on-chain-membership-protocol-to-turn-commitment-into-a-verifiable-signal/",
+        date: "Jan 2025",
+      },
+      {
+        source: "Encrypt Business",
+        logo: "/press/default7.png",
+        title:
+          "Red Horse RH Launches On-Chain Membership Protocol to Turn Commitment into a Verifiable Signal",
+        href: "https://www.encryptbusiness.com/red-horse-rh-launches-on-chain-membership-protocol-to-turn-commitment-into-a-verifiable-signal/",
+        date: "Jan 2025",
+      },
+      {
+        source: "Blockchain News Portal",
+        logo: "/press/default8.png",
+        title:
+          "Red Horse RH Launches On-Chain Membership Protocol to Turn Commitment into a Verifiable Signal",
+        href: "https://www.blockchainnewsportal.com/red-horse-rh-launches-on-chain-membership-protocol-to-turn-commitment-into-a-verifiable-signal/",
+        date: "Jan 2025",
+      },
+      {
+        source: "Naver Blog",
+        logo: "/press/default9.png",
+        title: "Red Horse RH Blog Update",
+        href: "https://blog.naver.com/heraculis/224160329101",
+        date: "Jan 2025",
+      },
+      {
+        source: "Facebook",
+        logo: "/press/default10.png",
+        title: "Red Horse RH Facebook Update",
+        href: "https://www.facebook.com/share/p/17QGwVytfu/",
+        date: "Jan 2025",
+      },
+      {
+        source: "Patron Times",
+        logo: "",
+        title: "Red Horse RH Patron Times Article",
+        href: "https://www.patrontimes.co.kr/news/462416",
+        date: "Jan 2025",
       },
     ],
   },
