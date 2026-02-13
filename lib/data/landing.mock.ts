@@ -331,7 +331,7 @@ export const landingMock: LandingContent = {
         description:
           "Official updates, release notes, and snapshot notices.",
         action: "Follow on X",
-        href: "https://x.com/RedHorse_RH",
+        href: "https://x.com/Redhorse_DAO",
         icon: "spark",
       },
     ],
