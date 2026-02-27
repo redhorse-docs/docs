@@ -21,8 +21,27 @@ function MarqueeBanner({
   direction?: "left" | "right";
   speed?: number;
 }) {
-  // Double the partners for seamless loop
-  const duplicatedPartners = [...partners, ...partners];
+  const renderPartners = (keyPrefix: string) =>
+    partners.map((partner, index) => (
+      <div
+        key={`${keyPrefix}-${partner.name}-${index}`}
+        className="group flex h-24 w-48 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-7 py-4 transition-all duration-300 hover:border-white/25 hover:bg-white/10 md:h-28 md:w-60 lg:h-32 lg:w-72"
+      >
+        {partner.logo ? (
+          <Image
+            src={partner.logo}
+            alt={partner.name}
+            width={160}
+            height={60}
+            className="h-auto max-h-14 w-auto max-w-full object-contain transition-all duration-300 md:max-h-16 lg:max-h-18"
+          />
+        ) : (
+          <span className="font-heading text-lg font-semibold text-white/60 transition-colors duration-300 group-hover:text-white md:text-xl">
+            {partner.name}
+          </span>
+        )}
+      </div>
+    ));
 
   return (
     <div className="relative flex gap-8 overflow-hidden py-6 md:gap-12">
@@ -35,69 +54,20 @@ function MarqueeBanner({
           "flex shrink-0 gap-8 md:gap-12",
           direction === "left" ? "animate-marquee-left" : "animate-marquee-right",
         )}
-        style={{
-          animationDuration: `${speed}s`,
-        }}
+        style={{ animationDuration: `${speed}s` }}
       >
-        {duplicatedPartners.map((partner, index) => (
-          <a
-            key={`${partner.name}-${index}`}
-            href={partner.href || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex h-24 w-48 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-7 py-4 transition-all duration-300 hover:border-white/25 hover:bg-white/10 md:h-28 md:w-60 lg:h-32 lg:w-72"
-          >
-            {partner.logo ? (
-              <Image
-                src={partner.logo}
-                alt={partner.name}
-                width={160}
-                height={60}
-                className="h-auto max-h-14 w-auto max-w-full object-contain opacity-70 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0 md:max-h-16 lg:max-h-18"
-              />
-            ) : (
-              <span className="font-heading text-lg font-semibold text-white/60 transition-colors duration-300 group-hover:text-white md:text-xl">
-                {partner.name}
-              </span>
-            )}
-          </a>
-        ))}
+        {renderPartners("a")}
       </div>
 
-      {/* Duplicate for seamless loop */}
       <div
         className={cn(
           "flex shrink-0 gap-8 md:gap-12",
           direction === "left" ? "animate-marquee-left" : "animate-marquee-right",
         )}
-        style={{
-          animationDuration: `${speed}s`,
-        }}
+        style={{ animationDuration: `${speed}s` }}
         aria-hidden
       >
-        {duplicatedPartners.map((partner, index) => (
-          <a
-            key={`${partner.name}-dup-${index}`}
-            href={partner.href || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex h-24 w-48 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-7 py-4 transition-all duration-300 hover:border-white/25 hover:bg-white/10 md:h-28 md:w-60 lg:h-32 lg:w-72"
-          >
-            {partner.logo ? (
-              <Image
-                src={partner.logo}
-                alt={partner.name}
-                width={160}
-                height={60}
-                className="h-auto max-h-14 w-auto max-w-full object-contain opacity-70 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0 md:max-h-16 lg:max-h-18"
-              />
-            ) : (
-              <span className="font-heading text-lg font-semibold text-white/60 transition-colors duration-300 group-hover:text-white md:text-xl">
-                {partner.name}
-              </span>
-            )}
-          </a>
-        ))}
+        {renderPartners("b")}
       </div>
     </div>
   );
